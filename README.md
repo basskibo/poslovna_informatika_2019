@@ -9,16 +9,16 @@ a [Sails v1](https://sailsjs.com) application for eduacational purposes.
 + Aleksandar Rancic
 + Aleksandar Krstic
 
+
 ### Version info
 
 This app was originally generated on Thu Jan 03 2019 22:03:41 GMT+0100 (CET) using Sails v1.0.2. by user basskibo
 
-### Licence
-We are using MIT licence
+
 
 ### Prerequisite
-+ Node.js (https://nodejs.org/en/download)
-+ Sails.js (https://sailsjs.com/get-started)
++ Node.js (https://nodejs.org/en/download) 
++ Sails.js (https://sailsjs.com/get-started) - install globally with sudo npm i -g 
 + MySQL (https://www.mysql.com/downloads)
 + MySQL Workbench (https://dev.mysql.com/downloads/workbench)
 
@@ -26,10 +26,10 @@ We are using MIT licence
 ### Getting started
 Project is divided into two parts, one is backend (server) in folder named 'poslovna_backend' whereas frontend part is in folder 'poslovna_frontend'.
 For backend we are using Sails.js more details in next chapter, on the other hand frontend side is using Angular.
-+ To start backend server navigate to backend folder and enter command 'sails lift' which will lift server on port 3005.
++ First install npm modules with command 'npm install' or 'sudo npm install'. To start backend server navigate to backend folder and enter command 'sails lift' which will lift server on port 3005.
 (http://localhost:3005)
 
-+ To start frontend server go to frontend folder and execute 'sudo npm start' (I personally use sudo on Linux OS, you can also use it on OS X,
++ First install npm modules with command 'npm install' or 'sudo npm install'.  To start frontend server go to frontend folder and execute 'sudo npm start' (I personally use sudo on Linux OS, you can also use it on OS X,
 but if you are using Windows you will not use sudo). It will start on port 4200. (http://localhost:4200)
 
 
@@ -46,5 +46,11 @@ Angular
 + [Get started](https://angular.io/guide/quickstart)
 + [Use angular material](https://material.angular.io/guide/getting-started)
 
-###Contact
+### Report Bug/Feature
+Go to the github page of this project (https://github.com/basskibo/poslovna_informatika_2019) and under tab Issues click on new issue and choose what type of issue you want to create
+
+### Contact
 For more info feel free to contact me on jagetic.bojan@gmail.com
+
+### Licence
+We are using MIT licence
