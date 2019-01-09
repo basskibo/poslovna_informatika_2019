@@ -8,6 +8,8 @@
 module.exports = {
 
   tableName:'faktura',
+  primaryKey: 'id',
+
   attributes: {
 
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗

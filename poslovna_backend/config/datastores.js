@@ -53,14 +53,14 @@ module.exports.datastores = {
 
   },
 
-  q3PromoDb: {
-      adapter: 'sails-mongo',
-      host: 'localhost',
-      port: 27017,
-      //user: 'username', //optional
-      //password: 'password', //optional
-      database: 'poslovna-informatika' //optional
-  }
+  // q3PromoDb: {
+  //     adapter: 'sails-mongo',
+  //     host: 'localhost',
+  //     port: 27017,
+  //     //user: 'username', //optional
+  //     //password: 'password', //optional
+  //     database: 'poslovna-informatika' //optional
+  // }
 
 
 };
