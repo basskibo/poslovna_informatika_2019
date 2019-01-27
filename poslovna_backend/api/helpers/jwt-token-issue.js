@@ -41,23 +41,18 @@ then the email message will be written to the terminal instead of actually being
 
 
   fn: async function(inputs, exits) {
-    console.log("jwt issue called ");
     let
       jwt = require('jsonwebtoken'),
       tokenSecret = "alphabetRagnarokiscomming",
-      userId = inputs.userId,
-      session = inputs.session;
-
-    console.log(inputs);
-    // sails.config.custom.redisClient.set(session ,JSON.stringify({userId: userId, sessionId: session}));
+      userId = inputs.userId;
 
     let signedToken = jwt.sign({
       exp: Math.floor(Date.now() / 1000) + (60 * 60),
       data: userId
     }, tokenSecret);
+    sails.log.debug('token signed ');
 
-    console.log('token signed : ' + signedToken);
-    return signedToken;
+    return exits.success(signedToken) ;
 
 
 

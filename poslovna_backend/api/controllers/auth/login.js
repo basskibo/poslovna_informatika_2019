@@ -114,7 +114,6 @@ password attempt.`,
     let jwt = await sails.helpers.jwtTokenIssue.with({
       userId: userRecord.id, session : userSession
     });
-    console.log("we got token back")
     return exits.success({
       user:userRecord,
       session: userSession,
