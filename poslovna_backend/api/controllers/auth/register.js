@@ -62,7 +62,6 @@ module.exports = {
 
     sails.log.warn("Register is started from: " +  this.req.ip);
     let newEmailAddress = inputs.email.toLowerCase();
-    console.log(inputs.password )
     // let hashed = await sails.helpers.passwords.hashPassword(inputs.password);
 
     // Build up data for the new user record and save it to the database.

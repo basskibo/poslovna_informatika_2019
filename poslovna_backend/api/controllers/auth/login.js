@@ -16,7 +16,13 @@ let generateSessionId = (userId) =>{
   return xSession;
 };
 
-
+let Redis = require('ioredis');
+let redis = new Redis({
+  port: 6379,          // Redis port
+  host: '127.0.0.1',   // Redis host
+  family: 4,           // 4 (IPv4) or 6 (IPv6)
+  db: 2
+});
 
 module.exports = {
 
@@ -100,15 +106,19 @@ password attempt.`,
     this.req.session.cookie.maxAge = sails.config.custom.rememberMeCookieMaxAge;
     this.req.session.sessionId = userSession ;
 
+    let userWithSession =  {session : userSession, user : userRecord};
+    redis.set(userSession , JSON.stringify(userWithSession));
+
 
     sails.log.warn("User logged in with session and created in redis: "+  JSON.stringify(this.req.session.sessionId ));
-
+    let jwt = await sails.helpers.jwtTokenIssue.with({
+      userId: userRecord.id, session : userSession
+    });
+    console.log("we got token back")
     return exits.success({
       user:userRecord,
-      session: userSession
-      // token:  sails.helpers.jwtTokenIssue.with({
-      //   userId: userRecord.id, session : userSession
-      // })
+      session: userSession,
+      token: jwt
     });
 
   }

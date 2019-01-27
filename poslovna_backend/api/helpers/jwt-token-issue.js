@@ -50,9 +50,6 @@ then the email message will be written to the terminal instead of actually being
 
     console.log(inputs);
     // sails.config.custom.redisClient.set(session ,JSON.stringify({userId: userId, sessionId: session}));
-    // console.log(session);
-    // await new Promise((resolve, reject) => setTimeout(resolve, 3000));
-
 
     let signedToken = jwt.sign({
       exp: Math.floor(Date.now() / 1000) + (60 * 60),
@@ -60,11 +57,7 @@ then the email message will be written to the terminal instead of actually being
     }, tokenSecret);
 
     console.log('token signed : ' + signedToken);
-    setTimeout(() => {
-      console.log("2 seconds ....")
-      return signedToken;
-    }, 2000);
-
+    return signedToken;
 
 
 
