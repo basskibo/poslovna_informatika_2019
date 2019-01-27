@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,7 +11,10 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { ContactComponent } from './contact/contact.component';
 import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './login';
+import {JwtInterceptor} from "./_helpers";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+
 
 @NgModule({
   declarations: [
@@ -24,9 +29,13 @@ import { LoginComponent } from './login/login.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS , useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
