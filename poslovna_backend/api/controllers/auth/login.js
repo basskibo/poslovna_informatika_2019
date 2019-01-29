@@ -67,7 +67,7 @@ password attempt.`,
     badCombo: {
       description: `The provided email and password combination does not
       match any user in the database.`,
-      responseType: 'unauthorized'
+      responseType: 'notFound'
     }
 
   },
@@ -75,12 +75,13 @@ password attempt.`,
 
   fn: async function (inputs, exits) {
     sails.log.warn('Starting with login for web users');
+    sails.log.warn(JSON.stringify(inputs));
     let userRecord = await User.findOne({
       email: inputs.email.toLowerCase(),
     });
 
     if (!userRecord) {
-      console.log('it is bad combo?' + userRecord);
+      console.log('it is bad combo, we could not found user with that id');
       throw 'badCombo';
     }
 

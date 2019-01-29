@@ -22,9 +22,11 @@
         <!--<input class="form-control mr-sm-1" type="username" placeholder="username" aria-label="Log In">-->
         <!--<input class="form-control mr-sm-1" type="password" placeholder="password" aria-label="Log In">-->
       </form>
+      <p>{{currentUser}}</p>
       <button class="btn btn-outline-primary "  routerLink="/login">Log In</button>
 
       <button class="btn btn-outline-secondary" type="button" routerLink="/register">Register</button>
+      <button class="btn btn-outline-secondary" type="button" (click)="logoutUser()" >Logout</button>
     </div>
   </nav>
 </header>
