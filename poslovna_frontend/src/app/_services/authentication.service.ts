@@ -35,7 +35,7 @@ export class AuthenticationService {
       }));
   }
 
-  logout() {
+  logout(_id: string) {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
     localStorage.removeItem('token');

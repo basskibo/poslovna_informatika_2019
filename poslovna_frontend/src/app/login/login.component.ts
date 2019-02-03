@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../_services";
 import {first} from "rxjs/operators";
+import {Globals} from "../globals";
 
 
 @Component({
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   userNotFound = false;
 
   constructor(
-
+    private globals: Globals,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -51,7 +52,10 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           console.log("login successful!!" + data);
-          debugger;
+          this.globals.isLoggedIn = true;
+          this.globals.currentUser = data.user;
+          this.globals.session = data.session;
+          console.log(this.globals);
           this.router.navigate(['/contact']);
         },
         error => {
