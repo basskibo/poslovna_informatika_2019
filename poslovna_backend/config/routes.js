@@ -30,6 +30,7 @@ module.exports.routes = {
 
   'POST /auth/login': {action: 'auth/login'},
   'POST /auth/register': {action: 'auth/register'},
+  'POST /auth/logout': {action: 'auth/logout'},
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
   //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗

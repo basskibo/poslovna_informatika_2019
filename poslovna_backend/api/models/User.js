@@ -48,6 +48,10 @@ module.exports = {
       type: 'string',
       required: false
     },
+    web: {
+      type: 'string',
+      required: false
+    },
     isBank:{
       type:'boolean',
       columnName:'banka'
