@@ -43,19 +43,6 @@ export class NavComponent implements OnInit {
     this.globals.isLoggedIn = false;
     localStorage.removeItem('currentUser');
     localStorage.removeItem('session');
-    // this.authenticationService.logout()
-    //   .pipe(first())
-    //   .subscribe(
-    //     data => {
-    //       console.log("logout successful!!" + data);
-    //       this.globals.isLoggedIn = true;
-    //       this.globals.currentUser = data.user;
-    //       this.globals.session = data.session ;
-    //       console.log(this.globals);
-    //       this.router.navigate(['/contact']);
-    //     },
-    //     error => {
-    //     });
   }
 
 }

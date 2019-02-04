@@ -28,16 +28,43 @@ module.exports = {
       description: 'The unencrypted password to use for the new account.'
     },
 
-    firstName:  {
+    name: {
       required: true,
       type: 'string',
-      description: 'The user\'s first name.',
+      description: 'The firm/bank name.',
     },
 
-    lastName:  {
+    address: {
       required: true,
       type: 'string',
-      description: 'The user\'s last name.',
+      description: 'The address of firm/bank.',
+    },
+
+    type: {
+      required: true,
+      type: 'string',
+      description: 'The type of the user.',
+    },
+    pib: {
+      required: true,
+      type: 'string',
+      description: 'PIB'
+    },
+    telephone: {
+      required: false,
+      type: 'string'
+    },
+    fax: {
+      required: false,
+      type: 'string'
+    },
+    web: {
+      required: false,
+      type: 'string'
+    },
+    isBank: {
+      required: true,
+      type: 'boolean'
     }
 
   },
@@ -60,19 +87,21 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    sails.log.warn("Register is started from: " +  this.req.ip);
+    sails.log.warn("Register started ");
     let newEmailAddress = inputs.email.toLowerCase();
-    // let hashed = await sails.helpers.passwords.hashPassword(inputs.password);
 
-    // Build up data for the new user record and save it to the database.
-    // (Also use `fetch` to retrieve the new ID so that we can use it below.)
     let newUserRecord = await User.create(
       {
         email: newEmailAddress,
         password: await sails.helpers.passwords.hashPassword(inputs.password),
-        firstName: inputs.firstName,
-        lastName: inputs.lastName,
-        fullName : inputs.firstName + ' ' + inputs.lastName,
+        name: inputs.name,
+        address: inputs.address,
+        type: inputs.type,
+        pib: inputs.pib,
+        telephone: inputs.telephone,
+        fax: inputs.fax,
+        web: inputs.web,
+        isBank: inputs.isBank
       })
       .intercept('E_UNIQUE', 'emailAlreadyInUse')
       .intercept({name: 'UsageError'}, 'invalid')

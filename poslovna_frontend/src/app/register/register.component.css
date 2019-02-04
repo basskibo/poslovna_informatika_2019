@@ -5,3 +5,8 @@
 .large{
     font-size: 4em;
 }
+
+
+.half-width {
+  width: 50%;
+}

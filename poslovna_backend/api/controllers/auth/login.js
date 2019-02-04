@@ -74,8 +74,7 @@ password attempt.`,
 
 
   fn: async function (inputs, exits) {
-    sails.log.warn('Starting with login for web users');
-    sails.log.warn(JSON.stringify(inputs));
+    sails.log.info('Starting with login for web users');
     let userRecord = await User.findOne({
       email: inputs.email.toLowerCase(),
     });
@@ -110,8 +109,7 @@ password attempt.`,
     let userWithSession =  {session : userSession, user : userRecord};
     redis.set(userSession , JSON.stringify(userWithSession));
 
-
-    sails.log.warn("User logged in with session and created in redis: "+  JSON.stringify(this.req.session.sessionId ));
+    sails.log.debug("User logged in with session and created in redis: " + JSON.stringify(this.req.session.sessionId));
     let jwt = await sails.helpers.jwtTokenIssue.with({
       userId: userRecord.id, session : userSession
     });
