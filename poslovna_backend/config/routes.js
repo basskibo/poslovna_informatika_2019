@@ -32,6 +32,8 @@ module.exports.routes = {
   'POST /auth/register': {action: 'auth/register'},
   'POST /auth/logout': {action: 'auth/logout'},
 
+  'POST /invoice/create': {action: 'invoice/create-invoice'},
+
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
   //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗
   //  ╚╩╝╚═╝╚═╝╩ ╩╚═╝╚═╝╩ ╩╚═╝

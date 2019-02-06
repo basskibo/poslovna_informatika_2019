@@ -54,12 +54,14 @@ module.exports = {
     },
     bill_number: {
       type:'number',
-      columnName:'broj racuna'
+      columnName:'broj racuna',
+      defaultsTo: 1112223333
+
     },
     bill_date:{
       type: 'string',
       columnName:'datum racuna',
-      columnType: 'datetime'
+      // columnType: 'datetime'
     },
     goods_value:{
       type:'string',
@@ -69,6 +71,7 @@ module.exports = {
     service_value:{
       type:'string',
       columnType: 'decimal (15,2)',
+      defaultsTo:'0',
       columnName: 'vrednost usluge'
     },
     total_goods_and_services:{
@@ -104,7 +107,7 @@ module.exports = {
     currency_date :{
       type: 'string',
       columnName:'datum valute',
-      columnType: 'datetime'
+      // columnType: 'datetime'
     }
 
 

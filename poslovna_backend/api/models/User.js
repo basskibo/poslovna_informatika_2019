@@ -5,6 +5,35 @@
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
 
+
+let generateSWIFT = () => {
+  let text = "", possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for (let i = 0; i < 9; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  sails.log.info("Generated bank SWIFT code : " + text);
+
+  return text;
+};
+
+let generateUniqueAccountNumber = () => {
+  let text = "", possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for (let i = 0; i < 30; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  sails.log.info("Generated unique account number : " + text);
+
+  return text;
+};
+
+let generateBankCode = () => {
+  let text = "", possible = "0123456789";
+
+  for (let i = 0; i < 3; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  sails.log.info("Generated bank code : "+ text);
+  return text;
+};
+
+
 module.exports = {
   tableName: 'pravna_lica',
   primaryKey: 'id',
@@ -68,6 +97,24 @@ module.exports = {
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
   },
+  afterCreate: async function (attrs, next) {
+    let bankCode = await  BankCode.create({
+      bankCode: generateBankCode(),
+      SWIFTcode: generateSWIFT(),
+      bank_id: attrs.id
+    }).fetch();
+
+    sails.log.info('Bank code created for user!');
+
+    let accLegalEnt = await  AccountsOfLegalEntities.create({
+      user_id: attrs.id,
+      account_number: generateUniqueAccountNumber()
+    }).fetch();
+    sails.log.info('Account Of Legal Entities created for user!');
+
+    next();
+  }
+
 
 };
 
