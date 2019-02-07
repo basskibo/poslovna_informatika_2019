@@ -48,7 +48,9 @@ module.exports = {
     pib: {
       required: true,
       type: 'string',
-      description: 'PIB'
+      description: 'PIB',
+      minLength: 11 ,
+      maxLength: 11,
     },
     telephone: {
       required: false,
@@ -82,6 +84,11 @@ module.exports = {
       description: 'The provided email address is already in use.',
     },
 
+    invalidOrMissingParams: {
+      statusCode: 400,
+      description: 'Bad params, pib must have exactly 11 characters'
+    }
+
   },
 
 
@@ -90,7 +97,7 @@ module.exports = {
     sails.log.warn("Register started ");
     let newEmailAddress = inputs.email.toLowerCase();
 
-    let newUserRecord = await User.create(
+      let newUserRecord = await User.create(
       {
         email: newEmailAddress,
         password: await sails.helpers.passwords.hashPassword(inputs.password),
@@ -104,6 +111,7 @@ module.exports = {
         isBank: inputs.isBank
       })
       .intercept('E_UNIQUE', 'emailAlreadyInUse')
+      .intercept('E_MISSING_OR_INVALID_PARAMS', 'invalidOrMissingParams')
       .intercept({name: 'UsageError'}, 'invalid')
       .fetch();
 

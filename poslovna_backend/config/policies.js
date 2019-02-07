@@ -20,7 +20,10 @@ module.exports.policies = {
   // '*': true,
   '*': 'is-logged-in',
   'auth/register': true,
-  'auth/login': true
+  'auth/login': true,
+
+  'invoice/create' : ['is-logged-in','is-firm']
+
 
 
 
