@@ -4,6 +4,7 @@
  * @description :: A model definition.  Represents a database table/collection/etc.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
+let moment = require('moment');
 
 module.exports = {
   tableName: 'nalog_za_placanje',
@@ -26,14 +27,16 @@ module.exports = {
       columnName:'primalac'
     },
     order_date:{
-      type: 'string',
       columnName:'datum_naloga',
-      columnType: 'datetime'
+      type: 'ref',
+      columnType: 'datetime',
+      defaultsTo: moment().format('YYYY-MM-DD HH:mm:ss'),
     },
     currency_date:{
-      type: 'string',
+      type: 'ref',
+      columnType: 'datetime',
+      defaultsTo:  moment().format('YYYY-MM-DD HH:mm:ss'),
       columnName:'datum_valute',
-      columnType: 'datetime'
     },
     debtor_account: {
       type: 'string',
@@ -43,7 +46,7 @@ module.exports = {
     debtor_model: {
       type:'number',
       columnType: 'TINYINT',
-      columnName:'model_duznika'
+      columnName:'model zaduzenja'
     },
     debtor_reference_number: {
       type: 'string',
@@ -58,7 +61,7 @@ module.exports = {
     debit_model: {
       type:'number',
       columnType: 'TINYINT',
-      columnName:'model_zaduzenja'
+      columnName:'model odobrenja'
     },
     debit_reference_number: {
       type: 'string',
@@ -66,7 +69,7 @@ module.exports = {
       columnType: 'VARCHAR(20)'
     },
     amount:{
-      type:'string',
+      type:'number',
       columnName:'iznos',
       columnType:'decimal(15,2)'
     },

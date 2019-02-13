@@ -34,6 +34,9 @@ module.exports.routes = {
 
   'POST /invoice/create': {action: 'invoice/create-invoice'},
 
+
+  'POST /payment-order/create': {action: 'paymentOrder/create'},
+
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
   //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗
   //  ╚╩╝╚═╝╚═╝╩ ╩╚═╝╚═╝╩ ╩╚═╝

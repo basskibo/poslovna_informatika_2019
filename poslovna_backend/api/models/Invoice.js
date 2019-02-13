@@ -4,6 +4,7 @@
  * @description :: A model definition.  Represents a database table/collection/etc.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
+let moment = require('moment');
 
 module.exports = {
 
@@ -59,9 +60,11 @@ module.exports = {
 
     },
     bill_date:{
-      type: 'string',
+      type: 'ref',
       columnName:'datum racuna',
-      // columnType: 'datetime'
+      columnType: 'datetime',
+      defaultsTo: moment().format('YYYY-MM-DD HH:mm:ss')
+
     },
     goods_value:{
       type:'string',
@@ -105,9 +108,10 @@ module.exports = {
       columnType: 'varchar(18)'
     },
     currency_date :{
-      type: 'string',
+      type: 'ref',
       columnName:'datum valute',
-      // columnType: 'datetime'
+      columnType: 'datetime',
+      defaultsTo: moment().format('YYYY-MM-DD HH:mm:ss')
     }
 
 

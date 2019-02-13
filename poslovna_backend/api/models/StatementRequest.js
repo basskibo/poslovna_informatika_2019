@@ -5,6 +5,9 @@
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
 
+let moment = require('moment');
+
+
 module.exports = {
 
   tableName:'zahtev_izvoda',
@@ -26,9 +29,10 @@ module.exports = {
       columnName:'redni_broj_preseka'
     },
     date:{
-      type: 'string',
+      type: 'ref',
       columnName:'datum',
-      columnType: 'datetime'
+      columnType: 'datetime',
+      defaultsTo:  moment().format('YYYY-MM-DD HH:mm:ss')
     },
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗

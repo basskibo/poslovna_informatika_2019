@@ -35,9 +35,10 @@ actually logged in.  (If they weren't, then this action is just a no-op.)`,
   fn: async function (inputs, exits) {
     sails.log.info("lets logout  user with id: " + JSON.stringify(this.req.me.id));
 
+    await sails.helpers.removeSessionRedis(this.req.session.sessionId);
     this.req.session.destroy();
-    delete this.req.me;
 
+    delete this.req.me;
     if (!this.req.wantsJSON) {
       throw {redirect: '/login'};
     } else {
