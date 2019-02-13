@@ -69,10 +69,6 @@ module.exports = {
       required: true
     },
 
-
-
-
-
     payment_ammount: {
       description: 'iznos za uplatu',
       type: 'string',

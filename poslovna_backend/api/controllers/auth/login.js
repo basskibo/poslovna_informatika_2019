@@ -108,7 +108,7 @@ password attempt.`,
 
     let userWithSession =  {session : userSession, user : userRecord};
     redis.set(userSession , JSON.stringify(userWithSession));
-
+    redis.expire(userSession,60*60*24);
     sails.log.debug("User logged in with session and created in redis: " + JSON.stringify(this.req.session.sessionId));
     let jwt = await sails.helpers.jwtTokenIssue.with({
       userId: userRecord.id, session : userSession
