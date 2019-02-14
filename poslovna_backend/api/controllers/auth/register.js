@@ -49,7 +49,7 @@ module.exports = {
       required: true,
       type: 'string',
       description: 'PIB',
-      minLength: 11 ,
+      minLength: 9 ,
       maxLength: 11,
     },
     telephone: {

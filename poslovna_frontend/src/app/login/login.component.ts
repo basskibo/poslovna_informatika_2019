@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from "@angular/router";
-import {AuthenticationService} from "../_services";
-import {first} from "rxjs/operators";
-import {Globals} from "../globals";
+import {ActivatedRoute, Router} from '@angular/router';
+import {AuthenticationService} from '../_services';
+import {first} from 'rxjs/operators';
+import {Globals} from '../globals';
 
 
 @Component({
@@ -29,8 +29,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.minLength(6), Validators.required]]
     });
 
   }
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          console.log("login successful!!" + data);
+          console.log('login successful!!' + data);
           this.globals.isLoggedIn = true;
           this.globals.currentUser = data.user;
           this.globals.session = data.session;
@@ -64,5 +64,5 @@ export class LoginComponent implements OnInit {
         });
   }
 
-  
+
 }
