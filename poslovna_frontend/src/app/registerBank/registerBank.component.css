@@ -1,0 +1,36 @@
+
+.gray{
+    color: gray;
+}
+
+.large{
+    font-size: 4em;
+}
+
+.page-position {
+    text-align: center;
+    padding: 7px;
+}
+
+.page-position h2 {
+    padding-top: 30px; 
+    padding-bottom: 50px;
+}
+
+.form-control {
+    margin-left: 25%;
+    width: 50%;
+}
+
+.btn-danger {
+    margin-left: 2%;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+    .form-control {
+        margin-left: 0;
+        width: 100%;
+    }
+  }
