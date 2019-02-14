@@ -15,6 +15,7 @@ import { LoginComponent } from './login';
 import {JwtInterceptor} from "./_helpers";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {HTTP_INTERCEPTORS} from "@angular/common/http";
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS , useClass: JwtInterceptor, multi: true }
