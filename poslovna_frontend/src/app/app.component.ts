@@ -20,7 +20,7 @@ export class AppComponent {
   }
 
   logout() {
-    this.authenticationService.logout();
+    // this.authenticationService.logout();
     this.router.navigate(['/login']);
   }
   title = 'Narodna Banka Srbije';
