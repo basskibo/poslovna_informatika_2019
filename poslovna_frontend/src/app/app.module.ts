@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+//dodato
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -31,7 +34,9 @@ import {HTTP_INTERCEPTORS} from "@angular/common/http";
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    //i ovo
+    HttpClientModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS , useClass: JwtInterceptor, multi: true }
