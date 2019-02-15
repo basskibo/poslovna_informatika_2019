@@ -9,12 +9,10 @@
 
 .page-position {
     text-align: center;
-    padding: 7px;
 }
 
-.page-position h2 {
-    padding-top: 30px; 
-    padding-bottom: 50px;
+.page-position h2 { 
+    padding-bottom: 25px;
 }
 
 .form-control {
@@ -22,8 +20,13 @@
     width: 50%;
 }
 
+.btn{
+    margin-top: 5%;
+    margin-bottom: 10%;
+}
+
 .btn-danger {
-    margin-left: 2%;
+    margin-left: 1%;
 }
 
 
