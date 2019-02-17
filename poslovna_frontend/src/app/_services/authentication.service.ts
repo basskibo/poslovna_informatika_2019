@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+
 import { User } from '../_models';
 
 @Injectable({ providedIn: 'root' })
@@ -41,5 +42,6 @@ export class AuthenticationService {
     localStorage.removeItem('token');
     localStorage.removeItem('sessionId');
     this.currentUserSubject.next(null);
+    
   }
 }

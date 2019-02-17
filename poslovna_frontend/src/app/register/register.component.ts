@@ -65,7 +65,7 @@ export class RegisterComponent implements OnInit {
         .subscribe(
           data => {
             console.log('register successful!!');
-            this.msg = 'Register successfull, please log in';
+            this.msg = 'Successfully added new ' + this.f.type.value;
             setTimeout(() => { this.router.navigate(['/login']); }, 3000);
 
           },
