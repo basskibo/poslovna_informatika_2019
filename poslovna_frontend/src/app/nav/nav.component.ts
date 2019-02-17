@@ -4,6 +4,7 @@ import {User} from "../_models";
 import {first} from "rxjs/operators";
 import {AuthenticationService} from "../_services";
 import {Globals} from "../globals";
+import {Router} from "@angular/router"
 
 @Component({
   selector: 'app-nav',
@@ -15,7 +16,7 @@ export class NavComponent implements OnInit {
   public currentUser: Observable<User>;
   private authenticationService: AuthenticationService;
 
-  constructor(private globals: Globals) {
+  constructor(private globals: Globals, private router: Router) {
 
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
@@ -43,6 +44,7 @@ export class NavComponent implements OnInit {
     this.globals.isLoggedIn = false;
     localStorage.removeItem('currentUser');
     localStorage.removeItem('session');
+    this.router.navigateByUrl('/login');
   }
 
 }

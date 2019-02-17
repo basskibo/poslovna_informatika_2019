@@ -15,21 +15,16 @@
           <a class="nav-link" routerLink="/invoice_details" *ngIf="globals.isLoggedIn">Invoice detatails</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/about" *ngIf="globals.isLoggedIn">About</a>
+          <a class="nav-link" routerLink="/register" *ngIf="globals.isLoggedIn">Register New User</a>
         </li>
       </ul>
       <form class="form-inline my-1 my-lg-0">
         {{globals.currentUser.name}}
-        <!--<input class="form-control mr-sm-1" type="username" placeholder="username" aria-label="Log In">-->
-        <!--<input class="form-control mr-sm-1" type="password" placeholder="password" aria-label="Log In">-->
       </form>
 
 
       <button class="btn btn-outline-primary " *ngIf="!globals.isLoggedIn" routerLink="/login">Log In</button>
 
-      <button class="btn btn-outline-secondary" *ngIf="!globals.isLoggedIn" type="button" routerLink="/register">
-        Register
-      </button>
       <button class="btn btn-outline-secondary" style="margin-left: 10px;" *ngIf="globals.isLoggedIn" type="button"
               (click)="logoutUser()">logout
       </button>
