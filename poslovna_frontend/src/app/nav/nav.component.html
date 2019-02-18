@@ -9,25 +9,28 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/">Home </a>
+          <a class="nav-link" routerLink="/" *ngIf="globals.isLoggedIn">Home </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/contact">Contact</a>
+          <a class="nav-link" routerLink="/invoice_details" *ngIf="globals.isLoggedIn">Invoice detatails</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/about">About</a>
+          <a class="nav-link" routerLink="/register" *ngIf="globals.isLoggedIn">Register New User</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/registerBank">Bank Register</a>
         </li>
       </ul>
       <form class="form-inline my-1 my-lg-0">
-        <!--<input class="form-control mr-sm-1" type="username" placeholder="username" aria-label="Log In">-->
-        <!--<input class="form-control mr-sm-1" type="password" placeholder="password" aria-label="Log In">-->
+        {{globals.currentUser.name}}
       </form>
-      <button class="btn btn-outline-primary "  routerLink="/login">Log In</button>
 
-      <button class="btn btn-outline-secondary" type="button" routerLink="/register">Register</button>
+
+      <button class="btn btn-outline-primary " *ngIf="!globals.isLoggedIn" routerLink="/login">Log In</button>
+
+      <button class="btn btn-outline-secondary" style="margin-left: 10px;" *ngIf="globals.isLoggedIn" type="button"
+              (click)="logoutUser()">logout
+      </button>
     </div>
   </nav>
 </header>

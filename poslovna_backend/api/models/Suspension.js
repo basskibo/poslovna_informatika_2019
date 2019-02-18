@@ -1,39 +1,38 @@
 /**
- * StatementRequest.js
+ * Suspension.js
  *
  * @description :: A model definition.  Represents a database table/collection/etc.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
-
 let moment = require('moment');
 
-
 module.exports = {
-
-  tableName:'zahtev_izvoda',
   primaryKey: 'id',
+  tableName:'ukidanje',
 
   attributes: {
 
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-    bill_number: {
-      type: 'string',
-      columnName:'broj_racuna',
-      columnType: 'varchar (18)'
+
+
+    accountToTransferFundsTo: {
+      type:'string',
+      maxLength:30,
     },
-    preset_number: {
-      type:'number',
-      columnType: 'TINYINT',
-      columnName:'redni_broj_preseka'
-    },
-    date:{
+    dateOfSuspension:{
       type: 'ref',
-      columnName:'datum',
+      columnName:'datum ukidanja',
       columnType: 'datetime',
-      defaultsTo:  moment().format('YYYY-MM-DD HH:mm:ss')
+      defaultsTo: moment().format('YYYY-MM-DD HH:mm:ss')
     },
+    account_id: {
+      model: 'account',
+      columnName: 'account_id',
+      // type: 'integer',
+      required: true
+    }
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝

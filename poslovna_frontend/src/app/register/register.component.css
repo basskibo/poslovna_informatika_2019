@@ -19,3 +19,7 @@ h2{
     width: 500px;
     padding: 7px;
 }
+
+.half-width {
+  width: 50%;
+}

@@ -67,20 +67,20 @@ password attempt.`,
     badCombo: {
       description: `The provided email and password combination does not
       match any user in the database.`,
-      responseType: 'unauthorized'
+      responseType: 'notFound'
     }
 
   },
 
 
   fn: async function (inputs, exits) {
-    sails.log.warn('Starting with login for web users');
-    let userRecord = await User.findOne({
+    sails.log.info('Starting with login for web users');
+    let userRecord = await Bank.findOne({
       email: inputs.email.toLowerCase(),
     });
 
     if (!userRecord) {
-      console.log('it is bad combo?' + userRecord);
+      sails.log.error('It is bad combo, we could not found user with that id');
       throw 'badCombo';
     }
 
@@ -108,9 +108,8 @@ password attempt.`,
 
     let userWithSession =  {session : userSession, user : userRecord};
     redis.set(userSession , JSON.stringify(userWithSession));
-
-
-    sails.log.warn("User logged in with session and created in redis: "+  JSON.stringify(this.req.session.sessionId ));
+    redis.expire(userSession,60*60*24);
+    sails.log.debug("User logged in with session and created in redis: " + JSON.stringify(this.req.session.sessionId));
     let jwt = await sails.helpers.jwtTokenIssue.with({
       userId: userRecord.id, session : userSession
     });

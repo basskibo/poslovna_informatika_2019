@@ -1,59 +1,63 @@
 /**
- * User.js
+ * DailyAccountBalance.js
  *
  * @description :: A model definition.  Represents a database table/collection/etc.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
 
+let moment = require('moment');
+
+
 module.exports = {
-  tableName: 'pravna_lica',
+  tableName:'dnevno_stanje_racuna',
   primaryKey: 'id',
+
   attributes: {
 
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-    pib:{
+
+    extractNo: {
       type:'string',
-      columnName:'PIB',
-      minLength: 4,
-      maxLength: 32,
+      maxLength:30,
     },
-    name:{
-      columnName:'naziv',
-      type:'string'
+    dateOfTraffic:{
+      type: 'ref',
+      columnName:'datum prometa',
+      columnType: 'datetime',
+      defaultsTo: moment().format('YYYY-MM-DD HH:mm:ss')
     },
-    address: {
-      type: 'string',
-      columnName:'adresa'
+    trafficBenefit: {
+      type:'string',
+      columnType: 'decimal (15,2)',
+      columnName:'promet u korist',
+      maxLength:30,
     },
-    email: {
-      type: 'string',
-      required: true ,
-      unique: true
+    trafficExpence: {
+      type:'string',
+      columnType: 'decimal (15,2)',
+      columnName:'promet na teret',
+      maxLength:30,
     },
-    password: {
-      type: 'string',
-      required: true,
-      description: 'Securely hashed representation of the user\'s login password.',
-      protect: true,
-      example: '2$28a8eabna301089103-13948134nad'
+    previousBalance: {
+      type:'string',
+      columnType: 'decimal (15,2)',
+      columnName:'prethodno stanje',
+      maxLength:30,
     },
-    telephone: {
-      type: 'string',
-      columnName:'telefon',
-      required: false
+    newBalance: {
+      type:'string',
+      columnType: 'decimal (15,2)',
+      columnName:'novo stanje',
+      maxLength:30,
     },
-    fax: {
-      type: 'string',
-      required: false
-    },
-    isBank:{
-      type:'boolean',
-      columnName:'banka'
+    account_id: {
+      model: 'account',
+      columnName: 'account_id',
+      // type: 'integer',
+      required: true
     }
-
-
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝

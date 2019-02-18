@@ -15,6 +15,10 @@ import { RegisterBankComponent } from './registerBank/registerBank.component';
 import { LoginComponent } from './login';
 import {JwtInterceptor} from "./_helpers";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import { HttpClientModule } from '@angular/common/http';
+import {InvoiceDetailsComponent} from './invoice-details/invoice-details.component';
+
+import {Globals} from './globals';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -32,12 +36,13 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [
+  providers: [Globals,
     {provide: HTTP_INTERCEPTORS , useClass: JwtInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
