@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { ContactComponent } from './contact/contact.component';
 import { RegisterComponent } from './register/register.component';
+import { RegisterBankComponent } from './registerBank/registerBank.component';
 import { LoginComponent } from './login';
 import {JwtInterceptor} from "./_helpers";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
@@ -19,6 +20,7 @@ import {InvoiceDetailsComponent} from './invoice-details/invoice-details.compone
 
 import {Globals} from './globals';
 
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,15 +31,16 @@ import {Globals} from './globals';
     FooterComponent,
     ContactComponent,
     RegisterComponent,
-    LoginComponent,
-    InvoiceDetailsComponent
+    RegisterBankComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [Globals,
     {provide: HTTP_INTERCEPTORS , useClass: JwtInterceptor, multi: true }
