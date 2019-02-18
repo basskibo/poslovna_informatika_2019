@@ -1,13 +1,14 @@
 /**
- * BankCode.js
+ * Suspension.js
  *
  * @description :: A model definition.  Represents a database table/collection/etc.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
+let moment = require('moment');
 
 module.exports = {
-  tableName:'kodovi_banke',
   primaryKey: 'id',
+  tableName:'ukidanje',
 
   attributes: {
 
@@ -16,25 +17,22 @@ module.exports = {
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
 
 
-    bankCode: {
+    accountToTransferFundsTo: {
       type:'string',
-      minLength:3,
-      maxLength:3,
-      // autoIncrement:true
+      maxLength:30,
     },
-
-    SWIFTcode:{
-      type:'string',
-      minLength:8,
-      maxLength:11,
+    dateOfSuspension:{
+      type: 'ref',
+      columnName:'datum ukidanja',
+      columnType: 'datetime',
+      defaultsTo: moment().format('YYYY-MM-DD HH:mm:ss')
     },
-    bank_id: {
-      model: 'bank',
-      columnName: 'bank_id',
+    account_id: {
+      model: 'account',
+      columnName: 'account_id',
       // type: 'integer',
-      required: false
+      required: true
     }
-
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝

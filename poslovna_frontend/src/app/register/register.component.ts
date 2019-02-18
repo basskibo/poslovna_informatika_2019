@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   loading = false;
   submitted = false;
-  isBank = true;
+  isCentral = true;
   msg = '';
 
   constructor(
@@ -30,6 +30,8 @@ export class RegisterComponent implements OnInit {
         password: ['', [Validators.minLength(6), Validators.required]],
         name: [''],
         address: [''],
+        city: [''],
+        country: [''],
         pib: ['', [Validators.pattern('[0-9]{9}'), Validators.required]],
         telephone: [''],
         type: ['', [Validators.required]],
@@ -46,17 +48,19 @@ export class RegisterComponent implements OnInit {
       if (this.registerForm.invalid) {
         return;
       }
-      console.log(this.isBank +  this.f.email.value + this.f.password.value + this.f.name.value + this.f.address.value,
+      console.log(this.isCentral +  this.f.email.value + this.f.password.value + this.f.name.value + this.f.address.value,
         this.f.pib.value, this.f.type.value, this.f.telephone.value, this.f.website.value);
       this.userService.register(
         this.f.email.value,
         this.f.password.value,
         this.f.name.value,
         this.f.address.value,
+        this.f.city.value,
+        this.f.country.value,
         this.f.pib.value,
         this.f.type.value,
         this.f.telephone.value,
-        this.isBank,
+        this.isCentral,
         this.f.website.value).pipe(first())
         .subscribe(
           data => {

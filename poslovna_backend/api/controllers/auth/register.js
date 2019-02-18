@@ -39,6 +39,11 @@ module.exports = {
       type: 'string',
       description: 'The address of firm/bank.',
     },
+    city: {
+      required: true,
+      type: 'string',
+      description: 'The city of firm/bank.',
+    },
 
     type: {
       required: true,
@@ -56,6 +61,10 @@ module.exports = {
       required: false,
       type: 'string'
     },
+    country: {
+      required: true,
+      type: 'string'
+    },
     fax: {
       required: false,
       type: 'string'
@@ -64,7 +73,7 @@ module.exports = {
       required: false,
       type: 'string'
     },
-    isBank: {
+    isCentral: {
       required: true,
       type: 'boolean'
     }
@@ -87,6 +96,10 @@ module.exports = {
     invalidOrMissingParams: {
       statusCode: 400,
       description: 'Bad params, pib must have exactly 11 characters'
+    },
+    alreadyExists: {
+      statusCode: 409,
+      description: 'Central bank with this parameters already exits!'
     }
 
   },
@@ -97,25 +110,30 @@ module.exports = {
     sails.log.warn("Register started ");
     let newEmailAddress = inputs.email.toLowerCase();
 
-      let newUserRecord = await User.create(
+      let newUserRecord = await Bank.create(
       {
         email: newEmailAddress,
         password: await sails.helpers.passwords.hashPassword(inputs.password),
         name: inputs.name,
         address: inputs.address,
+        city: inputs.city,
+        country: inputs.country,
         type: inputs.type,
         pib: inputs.pib,
         telephone: inputs.telephone,
         fax: inputs.fax,
         web: inputs.web,
-        isBank: inputs.isBank
+        isCentral: inputs.isCentral
       })
-      .intercept('E_UNIQUE', 'emailAlreadyInUse')
+      // .intercept('E_UNIQUE', 'emailAlreadyInUse')
       .intercept('E_MISSING_OR_INVALID_PARAMS', 'invalidOrMissingParams')
+      .intercept('E_CONFLICT', 'alreadyExists')
+      .intercept('E_UNIQUE', 'alreadyExists')
       .intercept({name: 'UsageError'}, 'invalid')
       .fetch();
 
 
+      // sails.log.info('bank created !')
 
     if (sails.config.custom.verifyEmailAddresses) {
       // Send "confirm account" email
@@ -129,7 +147,7 @@ module.exports = {
         }
       });
     } else {
-      sails.log.info('Skipping new account email verification... (since `verifyEmailAddresses` is disabled)');
+      sails.log.info('Skipping new account email verification...');
     }
 
     // Since everything went ok, send our 200 response.

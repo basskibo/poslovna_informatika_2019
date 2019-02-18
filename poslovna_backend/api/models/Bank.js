@@ -1,64 +1,56 @@
 /**
- * User.js
+ * Bank.js
  *
  * @description :: A model definition.  Represents a database table/collection/etc.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
 
+let request = require('request');
 
-let generateSWIFT = () => {
-  let text = "", possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  for (let i = 0; i < 9; i++)
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-  sails.log.info("Generated bank SWIFT code : " + text);
-
-  return text;
-};
-
-let generateUniqueAccountNumber = () => {
-  let text = "", possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  for (let i = 0; i < 30; i++)
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-  sails.log.info("Generated unique account number : " + text);
-
-  return text;
-};
 
 let generateBankCode = () => {
   let text = "", possible = "0123456789";
 
   for (let i = 0; i < 3; i++)
     text += possible.charAt(Math.floor(Math.random() * possible.length));
-  sails.log.info("Generated bank code : "+ text);
+  sails.log.info("Generated bank code : " + text);
   return text;
 };
 
 
 module.exports = {
-  tableName: 'pravna_lica',
+  tableName: 'banka',
   primaryKey: 'id',
   attributes: {
 
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-    pib:{
-      type:'string',
-      columnName:'PIB',
+    pib: {
+      type: 'string',
+      columnName: 'PIB',
       minLength: 4,
       maxLength: 32,
     },
-    name:{
-      columnName:'naziv',
-      type:'string'
+    name: {
+      columnName: 'naziv',
+      type: 'string'
     },
     address: {
       type: 'string',
-      columnName:'adresa'
+      columnName: 'adresa'
+    },
+    city: {
+      type: 'string',
+      columnName: 'grad'
+    },
+    country: {
+      type: 'string',
+      columnName: 'drzava'
     },
     email: {
       type: 'string',
-      required: true ,
+      required: true,
       unique: true
     },
     password: {
@@ -70,7 +62,7 @@ module.exports = {
     },
     telephone: {
       type: 'string',
-      columnName:'telefon',
+      columnName: 'telefon',
       required: false
     },
     fax: {
@@ -81,9 +73,9 @@ module.exports = {
       type: 'string',
       required: false
     },
-    isBank:{
-      type:'boolean',
-      columnName:'banka'
+    isCentral: {
+      type: 'boolean',
+      columnName: 'centralna'
     }
 
 
@@ -97,20 +89,27 @@ module.exports = {
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
   },
-  afterCreate: async function (attrs, next) {
-    let bankCode = await  BankCode.create({
-      bankCode: generateBankCode(),
-      SWIFTcode: generateSWIFT(),
-      bank_id: attrs.id
-    }).fetch();
-
-    sails.log.info('Bank code created for user!');
-
-    let accLegalEnt = await  AccountsOfLegalEntities.create({
-      user_id: attrs.id,
-      account_number: generateUniqueAccountNumber()
-    }).fetch();
-    sails.log.info('Account Of Legal Entities created for user!');
+  afterCreate: async (attrs, next) => {
+    let swift = await sails.helpers.generateSwift(attrs.country, attrs.city, attrs.name);
+    if (!swift) {
+      sails.log.error("Creating Bank code failed because of uknown country, we could not generate SWIFT code");
+    } else {
+      let bankCode = await BankCode.create({
+        bankCode: generateBankCode(),
+        SWIFTcode: swift,
+        bank_id: attrs.id
+      }).fetch();
+      sails.log.info('Bank code created for bank!');
+    }
+    if(!attrs.isCentral){
+      let accLegalEnt = await Account.create({
+        user_id: attrs.id,
+        account_number: await sails.helpers.generateAccountNumber(attrs.name)
+      }).fetch();
+      sails.log.info('Account Of Legal Entities created for bank!');
+    }else{
+      sails.log.info('Account Of Legal Entities NOT created for central bank!');
+    }
 
     next();
   }
