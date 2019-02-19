@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
           this.globals.currentUser = data.user;
           this.globals.session = data.session;
           console.log(this.globals);
-          this.router.navigate(['/contact']);
+          this.router.navigate(['']);
         },
         error => {
           this.loading = false;
