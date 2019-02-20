@@ -12,17 +12,20 @@ import {first} from 'rxjs/operators';
   styleUrls: ['./registerBank.component.css']
 })
 export class RegisterBankComponent implements OnInit {
-  countries; 
+  countries;
   registerNewBankForm: FormGroup;
   loading = false;
   submitted = false;
+  userNotFound = false;
   msg = '';
 
-  constructor(private http: HttpClient,private data: DataService, private formBuilder: FormBuilder, private globals: Globals, private router: Router) { }
+  constructor(private http: HttpClient, private data: DataService, private formBuilder: FormBuilder,
+              private globals: Globals, private router: Router) {
+  }
 
   ngOnInit() {
 
-    this.http.get("https://restcountries.eu/rest/v2/all")
+    this.http.get('https://restcountries.eu/rest/v2/all')
     .pipe()
       .subscribe(
         response => {
@@ -31,23 +34,23 @@ export class RegisterBankComponent implements OnInit {
 
         },
         error => {
-          console.log("Ne Radi" + error);
+          console.log('Ne Radi' + error);
           this.loading = false;
           this.userNotFound = true;
         });
 
     this.registerNewBankForm = this.formBuilder.group({
-      pib: ["", [Validators.required, Validators.pattern('[0-9]{9}')]],
-      bankName: ["", [Validators.required]],
-      bankAddress: ["", [Validators.required]],
-      state: [""],
-      city: [""],
+      pib: ['', [Validators.required, Validators.pattern('[0-9]{9}')]],
+      bankName: ['', [Validators.required]],
+      bankAddress: ['', [Validators.required]],
+      state: [''],
+      city: [''],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.minLength(6), Validators.required]],
-      bankWeb: [""],
-      bankTelephone: [""],
-      bankFax: [""],
-      isBank: ["", Validators.required]
+      bankWeb: [''],
+      bankTelephone: [''],
+      bankFax: [''],
+      isBank: ['', Validators.required]
     });
   }
 

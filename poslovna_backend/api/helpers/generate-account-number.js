@@ -29,27 +29,31 @@ module.exports = {
   fn: async function (inputs, exits) {
 
     let generateRandom13CipherNumber = () => {
-      let num = "", possible = "0123456789";
-      for (let i = 0; i < 13; i++)
+      let num = '';
+      let possible = '0123456789';
+      for (let i = 0; i < 13; i++) {
         num += possible.charAt(Math.floor(Math.random() * possible.length));
-      sails.log.info("Generated unique account number : " + num);
-
+      }
+      sails.log.info('Generated unique account number : ' + num);
       return num;
     };
 
     let generateRandom2CipherNumber = () => {
-      let num = "", possible = "0123456789";
-      for (let i = 0; i < 2; i++)
+      let num = '';
+      let possible = '0123456789';
+      for (let i = 0; i < 2; i++) {
         num += possible.charAt(Math.floor(Math.random() * possible.length));
+      }
       return num;
     };
 
     let bankFirstChars = inputs.bankName.substring(0, 3);
-    let numAcc =  generateRandom13CipherNumber() ;
-    let controlNumber =  generateRandom2CipherNumber() ;
+    let numAcc = generateRandom13CipherNumber();
+    let controlNumber = generateRandom2CipherNumber();
     let text = bankFirstChars + '-' + numAcc + '-' + controlNumber;
-    sails.log.info("Generated bank account number : " + text);
-    return exits.success(text.toLocaleUpperCase());
+    let returningText = text.toLocaleUpperCase();
+    sails.log.info('Generated bank account number : ' + returningText);
+    return exits.success(returningText);
 
 
   }

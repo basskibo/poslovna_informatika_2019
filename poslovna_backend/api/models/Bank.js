@@ -105,9 +105,8 @@ module.exports = {
       let accountCreated = await Account.create({
         user_id: attrs.id,
         account_number: await sails.helpers.generateAccountNumber(attrs.name)
-      }).fetch();
+      });
       let country_currency = await sails.helpers.getCurrencyByCountry(attrs.country);
-
       let newOrExistingRecord = await Currency.findOrCreate({currency_code: country_currency.code}, {
         currency_code: country_currency.code,
         currency_name: country_currency.name
