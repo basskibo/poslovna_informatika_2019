@@ -1,5 +1,4 @@
-<h2>Register</h2>
-
+<h2>Register New User</h2>
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
     <div class="form-group half-width">
@@ -87,7 +86,9 @@
       <div class="form-group half-width">
           <label for="type">Type</label>
           <select class="form-control" formControlName="type">
-            <option>Admin</option>
+            <option>Admin</option>>>>>>>> master
+102
+
             <option>Bank</option>
           </select>
           <div *ngIf="f.type.invalid && (f.type.dirty || f.type.touched)"
