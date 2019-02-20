@@ -5,3 +5,34 @@
 .large{
     font-size: 4em;
 }
+
+.page-position {
+    text-align: center;
+}
+
+.page-position h2 { 
+    padding-bottom: 25px;
+}
+
+.form-control {
+    margin-left: 25%;
+    width: 50%;
+}
+
+.btn{
+    margin-top: 5%;
+    margin-bottom: 10%;
+}
+
+.btn-danger {
+    margin-left: 1%;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+    .form-control {
+        margin-left: 0;
+        width: 100%;
+    }
+  }

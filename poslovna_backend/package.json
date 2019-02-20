@@ -10,12 +10,14 @@
     "ioredis": "^4.5.1",
     "jsonwebtoken": "^8.4.0",
     "sails": "^1.0.2",
+    "sails-hook-cron": "^3.0.0",
     "sails-hook-organics": "^0.15.1",
     "sails-hook-orm": "^2.0.0-16",
     "sails-hook-sockets": "^1.4.0",
     "sails-hook-winston": "^1.1.0",
     "sails-mysql": "^1.0.1",
-    "winston-daily-rotate-file": "^3.6.0"
+    "winston-daily-rotate-file": "^3.6.0",
+    "xmlbuilder": "^10.1.1"
   },
   "devDependencies": {
     "@sailshq/eslint": "^4.19.3"

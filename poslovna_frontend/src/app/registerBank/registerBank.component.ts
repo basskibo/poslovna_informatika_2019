@@ -11,7 +11,6 @@ import {first} from 'rxjs/operators';
   templateUrl: './registerBank.component.html',
   styleUrls: ['./registerBank.component.css']
 })
-
 export class RegisterBankComponent implements OnInit {
   countries; 
   registerNewBankForm: FormGroup;

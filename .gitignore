@@ -46,6 +46,7 @@
 ################################################
 
 config/local.js
+config/datastores.js
 
 
 ################################################
@@ -130,3 +131,4 @@ lib-cov
 *.out
 *.pid
 
+poslovna_backend/config/datastores.js

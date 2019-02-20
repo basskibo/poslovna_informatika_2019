@@ -93,6 +93,7 @@
             <div class="checkbox">
                 <label for="isBank">isBank?</label> &nbsp;
                 <label><input type="checkbox" value="isBank" [ngClass]="{ 'is-invalid': submitted && f.isBank.errors }" required> Yes</label>
+
                 </div>
                 <div *ngIf="submitted && f.isBank.errors" class="invalid-feedback">
                 <div *ngIf="f.isBank.errors.required">isBank is required</div>
@@ -101,5 +102,7 @@
 
         <div class="form-group-btn">
             <button [disabled]="loading" class="btn btn-primary">Register</button>
+            <button [routerLink]="['/']" class="btn btn-danger"> Cancel </button>
         </div>
     </form>
+</div>

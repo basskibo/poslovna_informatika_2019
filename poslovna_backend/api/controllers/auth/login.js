@@ -75,12 +75,12 @@ password attempt.`,
 
   fn: async function (inputs, exits) {
     sails.log.info('Starting with login for web users');
-    let userRecord = await User.findOne({
+    let userRecord = await Bank.findOne({
       email: inputs.email.toLowerCase(),
     });
 
     if (!userRecord) {
-      console.log('it is bad combo, we could not found user with that id');
+      sails.log.error('It is bad combo, we could not found user with that id');
       throw 'badCombo';
     }
 
