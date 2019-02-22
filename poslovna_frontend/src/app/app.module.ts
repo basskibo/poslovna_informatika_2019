@@ -20,7 +20,7 @@ import {InvoiceDetailsComponent} from './invoice-details/invoice-details.compone
 
 import {Globals} from './globals';
 
-import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [

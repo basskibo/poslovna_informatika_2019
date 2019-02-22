@@ -30,6 +30,7 @@ module.exports.routes = {
 
   'POST /auth/login': {action: 'auth/login'},
   'POST /auth/register': {action: 'auth/register'},
+  'POST /auth/registerBank': {action: 'auth/registerBank'},
   'POST /auth/logout': {action: 'auth/logout'},
 
   'POST /invoice/create': {action: 'invoice/create-invoice'},
