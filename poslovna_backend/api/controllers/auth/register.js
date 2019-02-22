@@ -45,11 +45,6 @@ module.exports = {
       description: 'The city of firm/bank.',
     },
 
-    type: {
-      required: true,
-      type: 'string',
-      description: 'The type of the user.',
-    },
     pib: {
       required: true,
       type: 'string',
@@ -118,7 +113,6 @@ module.exports = {
         address: inputs.address,
         city: inputs.city,
         country: inputs.country,
-        type: inputs.type,
         pib: inputs.pib,
         telephone: inputs.telephone,
         fax: inputs.fax,

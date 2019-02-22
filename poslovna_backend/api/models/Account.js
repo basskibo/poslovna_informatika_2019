@@ -48,21 +48,26 @@ module.exports = {
 
   },
   afterCreate:  (attrs, next)=> {
-    let builder = require('xmlbuilder');
-    let fs = require('fs');
-      let root = builder.create('squares');
-    // root.com('f(x) = x^2');
-    for(var i = 1; i <= 5; i++)
-    {
-      var item = root.ele('data');
-      item.att('x', i);
-      item.att('y', i * i);
-    }
+    let builder = require('xmlbuilder'), fs = require('fs');
 
-    fs.writeFile('src/'+ attrs.account_number +  '.xml', root, function(err, data){
+    var xml = builder.create('account');
+    xml.ele('id', attrs.id);
+    xml.ele('account_number', {'desc': 'number identifier of account'}, attrs.account_number);
+    xml.ele('valid', {'desc': 'is account valid'}, attrs.valid);
+    xml.ele('balance', {'desc': 'What is balance of account'}, attrs.balance);
+    xml.ele('user_id', {'desc': 'user that this account belongs to'}, attrs.user_id)
+      .end({pretty: true});
+    // for(var i = 1; i <= 5; i++)
+    // {
+    //   var item = root.ele('data');
+    //   item.att('x', i);
+    //   item.att('y', i * i);
+    // }
+
+    fs.writeFile('src/accounts/' + attrs.account_number + '.xml', xml, function (err, data) {
       if (err) console.log(err);
 
-      console.log("successfully written our update xml to file");
+      sails.log.info("successfully written our update xml to file");
     });
 
     next();

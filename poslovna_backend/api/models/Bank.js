@@ -102,10 +102,16 @@ module.exports = {
       sails.log.info('Bank code created for bank!');
     }
     if(!attrs.isCentral){
-      let accLegalEnt = await Account.create({
+      let accountCreated = await Account.create({
         user_id: attrs.id,
         account_number: await sails.helpers.generateAccountNumber(attrs.name)
-      }).fetch();
+      });
+      let country_currency = await sails.helpers.getCurrencyByCountry(attrs.country);
+      let newOrExistingRecord = await Currency.findOrCreate({currency_code: country_currency.code}, {
+        currency_code: country_currency.code,
+        currency_name: country_currency.name
+      });
+
       sails.log.info('Account Of Legal Entities created for bank!');
     }else{
       sails.log.info('Account Of Legal Entities NOT created for central bank!');

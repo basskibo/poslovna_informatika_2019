@@ -102,7 +102,7 @@ module.exports = function defineCustomHook(sails) {
             }
 
             // Otherwise, look up the logged-in user.
-            var loggedInUser = await User.findOne({
+            var loggedInUser = await Bank.findOne({
               id: req.session.userId
             });
 
@@ -158,11 +158,11 @@ module.exports = function defineCustomHook(sails) {
 
               // Exclude any fields corresponding with attributes that have `protect: true`.
               var sanitizedUser = _.extend({}, loggedInUser);
-              for (let attrName in User.attributes) {
-                if (User.attributes[attrName].protect) {
-                  delete sanitizedUser[attrName];
-                }
-              }//∞
+              // for (let attrName in User.attributes) {
+              //   if (User.attributes[attrName].protect) {
+              //     delete sanitizedUser[attrName];
+              //   }
+              // }//∞
 
               // If there is still a "password" in sanitized user data, then delete it just to be safe.
               // (But also log a warning so this isn't hopelessly confusing.)

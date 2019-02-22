@@ -20,7 +20,10 @@ import {InvoiceDetailsComponent} from './invoice-details/invoice-details.compone
 
 import {Globals} from './globals';
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> bb6ec7907fbcfe41ee3abae10c064bbd72b4418d
 
 @NgModule({
   declarations: [
