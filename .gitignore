@@ -47,6 +47,8 @@
 
 config/local.js
 config/datastores.js
+# DataBase
+poslovna_backend/config/datastores.js
 
 
 ################################################
