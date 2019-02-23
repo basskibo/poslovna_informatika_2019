@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from "@angular/router";
-import {AuthenticationService} from "../_services";
-import {first} from "rxjs/operators";
+import {ActivatedRoute, Router} from '@angular/router';
+import {AuthenticationService} from '../_services';
+import {first} from 'rxjs/operators';
+import {Globals} from '../globals';
 
 
 @Component({
@@ -15,10 +16,10 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
   submitted = false;
-  returnUrl: string;
+  userNotFound = false;
 
   constructor(
-
+    private globals: Globals,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -28,8 +29,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.minLength(6), Validators.required]]
     });
 
   }
@@ -38,23 +39,30 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    this.loading = true;
+
 
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
     }
 
-    this.loading = true;
-    this.authenticationService.login(this.f.username.value, this.f.password.value)
+    this.authenticationService.login(this.f.email.value, this.f.password.value)
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate([this.returnUrl]);
+          console.log('login successful!!' + data);
+          this.globals.isLoggedIn = true;
+          this.globals.currentUser = data.user;
+          this.globals.session = data.session;
+          console.log(this.globals);
+          this.router.navigate(['']);
         },
         error => {
           this.loading = false;
+          this.userNotFound = true;
         });
   }
 
-  
+
 }

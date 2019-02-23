@@ -1,30 +1,33 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <span class="bcgwhite"><img src="assets/img/logo_transparent.png" /></span>
-    <a class="navbar-brand" routerLink="/">National Bank of Serbia</a>
+    <a class="navbar-brand" routerLink="/">Central Bank</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-  
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/">Home </a>
+          <a class="nav-link" routerLink="/" *ngIf="globals.isLoggedIn">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/contact">Contact</a>
+          <a class="nav-link" routerLink="/" *ngIf="globals.isLoggedIn">Accounts</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/about">About</a>
+          <a class="nav-link" routerLink="/registerBank" *ngIf="globals.isLoggedIn">Register Bank</a>
         </li>
       </ul>
       <form class="form-inline my-1 my-lg-0">
-        <!--<input class="form-control mr-sm-1" type="username" placeholder="username" aria-label="Log In">-->
-        <!--<input class="form-control mr-sm-1" type="password" placeholder="password" aria-label="Log In">-->
+        {{globals.currentUser.name}}
       </form>
-      <button class="btn btn-outline-primary "  routerLink="/login">Log In</button>
 
-      <button class="btn btn-outline-secondary" type="button" routerLink="/register">Register</button>
+
+      <button class="btn btn-outline-primary " *ngIf="!globals.isLoggedIn" routerLink="/login">Log In</button>
+      <button class="btn btn-outline-secondary " *ngIf="!globals.isLoggedIn" routerLink="/register">Register</button>
+      <button class="btn btn-outline-secondary" style="margin-left:10px;" *ngIf="globals.isLoggedIn" type="button"
+              (click)="logoutUser()">logout
+      </button>
     </div>
   </nav>
 </header>

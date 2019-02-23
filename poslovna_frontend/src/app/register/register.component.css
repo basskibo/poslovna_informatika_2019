@@ -1,7 +1,25 @@
+h2{
+    text-align: center;
+    margin-right: 55px;
+    padding: 5px;
+    padding-bottom: 50px;
+}
+
 .gray{
     color: gray;
 }
 
 .large{
     font-size: 4em;
+}
+
+.form-group {
+    text-align: center;
+    margin-left: 250px;
+    width: 500px;
+    padding: 7px;
+}
+
+.half-width {
+  width: 50%;
 }

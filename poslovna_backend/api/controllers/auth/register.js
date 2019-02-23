@@ -28,16 +28,49 @@ module.exports = {
       description: 'The unencrypted password to use for the new account.'
     },
 
-    firstName:  {
+    name: {
       required: true,
       type: 'string',
-      description: 'The user\'s first name.',
+      description: 'The firm/bank name.',
     },
 
-    lastName:  {
+    address: {
       required: true,
       type: 'string',
-      description: 'The user\'s last name.',
+      description: 'The address of firm/bank.',
+    },
+    city: {
+      required: true,
+      type: 'string',
+      description: 'The city of firm/bank.',
+    },
+
+    pib: {
+      required: true,
+      type: 'string',
+      description: 'PIB',
+      minLength: 9 ,
+      maxLength: 11,
+    },
+    telephone: {
+      required: false,
+      type: 'string'
+    },
+    country: {
+      required: true,
+      type: 'string'
+    },
+    fax: {
+      required: false,
+      type: 'string'
+    },
+    web: {
+      required: false,
+      type: 'string'
+    },
+    isCentral: {
+      required: true,
+      type: 'boolean'
     }
 
   },
@@ -55,30 +88,46 @@ module.exports = {
       description: 'The provided email address is already in use.',
     },
 
+    invalidOrMissingParams: {
+      statusCode: 400,
+      description: 'Bad params, pib must have exactly 11 characters'
+    },
+    alreadyExists: {
+      statusCode: 409,
+      description: 'Central bank with this parameters already exits!'
+    }
+
   },
 
 
   fn: async function (inputs, exits) {
 
-    sails.log.warn("Register is started from: " +  this.req.ip);
+    sails.log.warn("Register started ");
     let newEmailAddress = inputs.email.toLowerCase();
-    // let hashed = await sails.helpers.passwords.hashPassword(inputs.password);
 
-    // Build up data for the new user record and save it to the database.
-    // (Also use `fetch` to retrieve the new ID so that we can use it below.)
-    let newUserRecord = await User.create(
+      let newUserRecord = await Bank.create(
       {
         email: newEmailAddress,
         password: await sails.helpers.passwords.hashPassword(inputs.password),
-        firstName: inputs.firstName,
-        lastName: inputs.lastName,
-        fullName : inputs.firstName + ' ' + inputs.lastName,
+        name: inputs.name,
+        address: inputs.address,
+        city: inputs.city,
+        country: inputs.country,
+        pib: inputs.pib,
+        telephone: inputs.telephone,
+        fax: inputs.fax,
+        web: inputs.web,
+        isCentral: inputs.isCentral
       })
-      .intercept('E_UNIQUE', 'emailAlreadyInUse')
+      // .intercept('E_UNIQUE', 'emailAlreadyInUse')
+      .intercept('E_MISSING_OR_INVALID_PARAMS', 'invalidOrMissingParams')
+      .intercept('E_CONFLICT', 'alreadyExists')
+      .intercept('E_UNIQUE', 'alreadyExists')
       .intercept({name: 'UsageError'}, 'invalid')
       .fetch();
 
 
+      // sails.log.info('bank created !')
 
     if (sails.config.custom.verifyEmailAddresses) {
       // Send "confirm account" email
@@ -92,7 +141,7 @@ module.exports = {
         }
       });
     } else {
-      sails.log.info('Skipping new account email verification... (since `verifyEmailAddresses` is disabled)');
+      sails.log.info('Skipping new account email verification...');
     }
 
     // Since everything went ok, send our 200 response.
