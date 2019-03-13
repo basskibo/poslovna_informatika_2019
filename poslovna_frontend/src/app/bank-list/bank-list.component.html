@@ -1,0 +1,30 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">PIB</th>
+      <th scope="col">Name</th>
+      <th scope="col">Created</th>
+      <th scope="col">Country</th>
+      <th scope="col">City</th>
+      <th scope="col">Adrress</th>
+      <th scope="col">Telephone</th>
+      <th scope="col">Fax</th>
+      <th scope="col">Website</th>
+      <th scope="col">isCentral</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let bank of banks">
+      <th scope="row">{{bank.pib}}</th>
+      <td>{{bank.name}}</td>
+      <td>{{bank.createdAt}}</td>
+      <td>{{bank.country}}</td>
+      <td>{{bank.city}}</td>
+      <td>{{bank.address}}</td>
+      <td>{{bank.telephone}}</td>
+      <td>{{bank.fax}}</td>
+      <td>{{bank.web}}</td>
+      <td>{{bank.isCentral}}</td>
+    </tr>
+  </tbody>
+</table>

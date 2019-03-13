@@ -9,4 +9,5 @@ export class Bank {
   web: string;
   telephone: string;
   fax: string;
+  token: string;
 }

@@ -7,6 +7,7 @@ import { RegisterComponent} from "./register/register.component";
 import { RegisterBankComponent} from "./registerBank/registerBank.component";
 import { LoginComponent } from "./login/login.component";
 import {InvoiceDetailsComponent} from "./invoice-details/invoice-details.component";
+import { BankListComponent } from './bank-list/bank-list.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent},
   { path : 'register' , component: RegisterComponent},
   { path : 'login' , component: LoginComponent},
-  { path : 'registerBank' , component: RegisterBankComponent}
+  { path : 'registerBank' , component: RegisterBankComponent},
+  { path : 'banks' , component: BankListComponent}
 ];
 
 @NgModule({

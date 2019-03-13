@@ -19,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {InvoiceDetailsComponent} from './invoice-details/invoice-details.component';
 
 import {Globals} from './globals';
+import { BankListComponent } from './bank-list/bank-list.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {Globals} from './globals';
     ContactComponent,
     RegisterComponent,
     RegisterBankComponent,
-    LoginComponent
+    LoginComponent,
+    BankListComponent
   ],
   imports: [
     BrowserModule,

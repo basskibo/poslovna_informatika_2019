@@ -121,9 +121,9 @@ module.exports = {
         isCentral: inputs.isCentral
       })
       // .intercept('E_UNIQUE', 'emailAlreadyInUse')
-      .intercept('E_MISSING_OR_INVALID_PARAMS', 'invalidOrMissingParams')
-      .intercept('E_CONFLICT', 'alreadyExists')
-      .intercept('E_UNIQUE', 'alreadyExists')
+      // .intercept('E_MISSING_OR_INVALID_PARAMS', 'invalidOrMissingParams')
+      // .intercept('E_CONFLICT', 'alreadyExists')
+      // .intercept('E_UNIQUE', 'alreadyExists')
       .intercept({name: 'UsageError'}, 'invalid')
       .fetch();
 
