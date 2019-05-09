@@ -1,5 +1,5 @@
 /**
- * Bank.js
+ * Central Bank.js
  *
  * @description :: A model definition.  Represents a database table/collection/etc.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
@@ -17,7 +17,7 @@ let generateBankCode = () => {
 
 
 module.exports = {
-  tableName: 'banka',
+  tableName: 'centralna_banka',
   primaryKey: 'id',
   attributes: {
 
@@ -71,10 +71,10 @@ module.exports = {
       type: 'string',
       required: false
     },
-    users: {
-      collection: 'user',
-      via: 'bank'
-    }
+    // users: {
+    //   collection: 'user',
+    //   via: 'bank'
+    // }
 
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
@@ -99,18 +99,7 @@ module.exports = {
       }).fetch();
       sails.log.info('Bank code created for bank!');
     }
-    sails.log.info('Lets create account for bank!');
-    let accountCreated = await Account.create({
-      user_id: attrs.id,
-      account_number: await sails.helpers.generateAccountNumber(attrs.name)
-    });
-    let country_currency = await sails.helpers.getCurrencyByCountry(attrs.country);
-    await Currency.findOrCreate({currency_code: country_currency.code}, {
-      currency_code: country_currency.code,
-      currency_name: country_currency.name
-    });
 
-    sails.log.info('Account Of Legal Entities created for bank!');
     next();
   }
 

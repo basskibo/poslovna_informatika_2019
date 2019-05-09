@@ -19,8 +19,10 @@ module.exports.policies = {
 
   // '*': true,
   '*': 'is-logged-in',
-  'auth/register': true,
   'auth/login': true,
+  'bank/register': true,
+  'central_bank/register': true,
+  'auth/register-bank-user': true,
 
   'invoice/create' : ['is-logged-in','is-firm']
 

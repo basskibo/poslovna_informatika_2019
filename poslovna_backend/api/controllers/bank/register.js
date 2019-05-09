@@ -68,9 +68,9 @@ module.exports = {
       required: false,
       type: 'string'
     },
-    isCentral: {
-      required: true,
-      type: 'boolean'
+    user:{
+      required:false,
+      type:'string'
     }
 
   },
@@ -102,7 +102,7 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    sails.log.warn("Register started ");
+    sails.log.warn("Bank Register started ");
     let newEmailAddress = inputs.email.toLowerCase();
 
       let newUserRecord = await Bank.create(
@@ -116,8 +116,7 @@ module.exports = {
         pib: inputs.pib,
         telephone: inputs.telephone,
         fax: inputs.fax,
-        web: inputs.web,
-        isCentral: inputs.isCentral
+        web: inputs.web
       })
       // .intercept('E_UNIQUE', 'emailAlreadyInUse')
       .intercept('E_MISSING_OR_INVALID_PARAMS', 'invalidOrMissingParams')
@@ -141,7 +140,9 @@ module.exports = {
         }
       });
     } else {
-      sails.log.info('Skipping new account email verification...');
+      // sails.log.info('Skipping new account email verification...');
+      sails.log.info('Bank is created successfully!');
+
     }
 
     // Since everything went ok, send our 200 response.

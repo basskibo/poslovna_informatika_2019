@@ -1,45 +1,48 @@
 /**
- * Account.js
+ * Bank.js
  *
  * @description :: A model definition.  Represents a database table/collection/etc.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
 
-module.exports = {
-  primaryKey: 'id',
-  tableName:'racun',
+let request = require('request');
 
+module.exports = {
+  tableName: 'korisnik',
+  primaryKey: 'id',
   attributes: {
 
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-    account_number: {
-      type:'string',
-      columnName:'broj racuna',
-      maxLength:30,
+    firstName: {
+      columnName: 'ime',
+      type: 'string'
     },
-
-    valid:{
-      type:'boolean',
-      columnName: 'vazeci',
-      defaultsTo : true
+    lastName: {
+      type: 'string',
+      columnName: 'prezime'
     },
-    user_id: {
-      model: 'bank',
-      columnName: 'bank_id',
-      required: false
+    bank: {
+      model: 'bank'
     },
-    balance: {
-      type:'number',
-      columnType: 'decimal (15,2)',
-      defaultsTo: 0,
-      columnName:'stanje racuna',
+    email: {
+      type: 'string',
+      required: true,
+      unique: true
+    },
+    password: {
+      type: 'string',
+      required: true,
+      description: 'Securely hashed representation of the user\'s login password.',
+      protect: true,
+      example: '2$28a8eabna301089103-13948134nad'
     }
+
+
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
-
 
 
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
@@ -47,13 +50,10 @@ module.exports = {
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
   },
-  beforeCreate: async (attrs, next)=> {
-    let xmlCreate = await sails.helpers.xmlGenerator(attrs);
-    await TransferOrderFiles.create(xmlCreate).fetch();
-    sails.log.debug('Acount meta info has been created!');
-    next();
+  // afterCreate: async (attrs, next) => {
+  //   next();
+  // }
 
-  }
 
 };
 

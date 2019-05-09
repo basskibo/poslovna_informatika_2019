@@ -1,45 +1,39 @@
 /**
- * Account.js
+ * TransferOrderFiles.js
  *
- * @description :: A model definition.  Represents a database table/collection/etc.
+ * @description :: A model definition represents a database table/collection.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
 
 module.exports = {
+  tableName:'transfer_naloga_info',
   primaryKey: 'id',
-  tableName:'racun',
 
   attributes: {
 
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-    account_number: {
+
+    fileName: {
       type:'string',
-      columnName:'broj racuna',
-      maxLength:30,
+      // autoIncrement:true
     },
 
-    valid:{
-      type:'boolean',
-      columnName: 'vazeci',
-      defaultsTo : true
+    filePath:{
+      type:'string',
+      // minLength:8,
+      // maxLength:11,
     },
-    user_id: {
+    bank_id: {
       model: 'bank',
       columnName: 'bank_id',
+      // type: 'integer',
       required: false
-    },
-    balance: {
-      type:'number',
-      columnType: 'decimal (15,2)',
-      defaultsTo: 0,
-      columnName:'stanje racuna',
     }
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
-
 
 
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
@@ -47,13 +41,6 @@ module.exports = {
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
   },
-  beforeCreate: async (attrs, next)=> {
-    let xmlCreate = await sails.helpers.xmlGenerator(attrs);
-    await TransferOrderFiles.create(xmlCreate).fetch();
-    sails.log.debug('Acount meta info has been created!');
-    next();
-
-  }
 
 };
 
