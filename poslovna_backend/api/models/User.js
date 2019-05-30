@@ -35,7 +35,7 @@ module.exports = {
       type: 'string',
       required: true,
       description: 'Securely hashed representation of the user\'s login password.',
-      protect: true,
+      protect: false,
       example: '2$28a8eabna301089103-13948134nad'
     }
 

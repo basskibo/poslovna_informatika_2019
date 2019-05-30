@@ -79,6 +79,7 @@ password attempt.`,
       email: inputs.email.toLowerCase(),
     });
 
+    sails.log.info("user rec found : " + JSON.stringify(userRecord));
     if (!userRecord) {
       sails.log.error('It is bad combo, we could not found user with that id');
       throw 'badCombo';
@@ -89,6 +90,7 @@ password attempt.`,
     await sails.helpers.passwords.checkPassword(inputs.password, userRecord.password)
       .intercept('incorrect', 'badCombo');
 
+    sails.log.info("check passed")
     if (inputs.rememberMe) {
       if (this.req.isSocket) {
         sails.log.warn(

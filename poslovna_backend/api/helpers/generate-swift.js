@@ -41,7 +41,7 @@ module.exports = {
     if(town.length > 0){
       cityCode = town[0].city_code;
     }else{
-      cityCode = 'XX';
+      cityCode = '21';
     }
 
     request.get({

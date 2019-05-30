@@ -1,0 +1,17 @@
+<div class="container align-items-center" style="margin: auto; width: 100%; margin-top: 120px;">
+  <h2>Upload account file: </h2>
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+    <div class="form-group">
+      <p>Choose from your files acccount file and upload in order to use it later... Lorem ipsum sader saffatu male li
+        ruupoti</p>
+      <!--        <label for="file">Choose File</label>-->
+      <input (change)="handleFileInput($event.target.files)"
+             id="file"
+             type="file">
+      <button [disabled]="loading" class="btn btn-primary">Upload</button>
+
+    </div>
+
+  </form>
+</div>

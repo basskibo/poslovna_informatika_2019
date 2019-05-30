@@ -12,7 +12,7 @@
           <a class="nav-link" routerLink="/" *ngIf="globals.isLoggedIn">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/" *ngIf="globals.isLoggedIn">Accounts</a>
+          <a *ngIf="globals.isLoggedIn" class="nav-link" routerLink="/accounts">Accounts</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/registerBank" *ngIf="globals.isLoggedIn">Register Bank</a>

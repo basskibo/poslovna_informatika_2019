@@ -41,6 +41,7 @@ module.exports.routes = {
 
 
   'POST /payment-order/create': {action: 'paymentOrder/create'},
+  'GET /get-all-transfer-orders': {action: 'paymentOrder/getall-transfer-order-file'},
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
   //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗

@@ -5,6 +5,6 @@ export class Globals {
   type: string = 'test';
   isLoggedIn: boolean = false;
   currentUser: object = {};
-  session: string = ''
+  session = '';
 
 }

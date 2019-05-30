@@ -2,9 +2,9 @@
 
 module.exports.cron = {
   dailyCrossSection: {
-    schedule: '0 */3 * * * *',
+    schedule: '0 */5 * * * *',
     onTick: function() {
-      sails.log.info('I will trigger in every 3 minute');
+      sails.log.info('I will trigger in every 5 minute');
     },
     onComplete: function() {
       console.log('I am triggering when job is complete');

@@ -19,6 +19,10 @@ module.exports = {
       type:'string',
       // autoIncrement:true
     },
+    // fileDir: {
+    //   type:'string',
+    //   // autoIncrement:true
+    // },
 
     filePath:{
       type:'string',

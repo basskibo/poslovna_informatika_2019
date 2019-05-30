@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from './_services';
 import { User } from './_models';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,6 @@ import {Router} from "@angular/router";
 })
 
 export class AppComponent {
-  currentUser: User;
 
   constructor(
     private router: Router,
@@ -19,10 +18,12 @@ export class AppComponent {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
+  currentUser: User;
+  title = 'Narodna Banka Srbije';
+  user = 'Filip'
+
   logout() {
     // this.authenticationService.logout();
     this.router.navigate(['/login']);
   }
-  title = 'Narodna Banka Srbije';
-  user = 'Filip'
 }

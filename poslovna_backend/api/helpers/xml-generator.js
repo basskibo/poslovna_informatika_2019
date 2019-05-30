@@ -27,6 +27,9 @@ module.exports = {
   exits: {
     success: {
       description: 'success by default JSON'
+    },
+    FOLDER_NOT_FOUND: {
+      description: 'Could not find any users who logged in during the specified time frame.'
     }
   },
 
@@ -46,15 +49,16 @@ module.exports = {
 
     fs.exists(dir, (exists) => {
       if(!exists){
-        next('We cannot find folder to upload .xml documents !');
+        return exists.FOLDER_NOT_FOUND;
       }else{
-        let fileName = attrs.account_number + '.xml';
-        fs.writeFile(path.join(process.cwd(), 'uploads/accounts/' + fileName), xml, function (err, data) {
+        let filePath = attrs.account_number + '.xml';
+        let absoluteFilePath = path.join(process.cwd(), 'uploads/accounts/' + filePath);
+        fs.writeFile(absoluteFilePath, xml, function (err, data) {
           if (err){
             console.log(err);
           }
           sails.log.info("successfully written our update xml to file");
-          return exits.success({fileName: fileName , filePath : dir, bank_id: attrs.user_id});
+          return exits.success({filePath: absoluteFilePath, bank_id: attrs.user_id, fileName: attrs.account_number});
 
         });
 

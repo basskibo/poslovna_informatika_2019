@@ -10,11 +10,12 @@ import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { ContactComponent } from './contact/contact.component';
+import {AccountsComponent} from './accounts/accounts.component';
 import { RegisterComponent } from './register/register.component';
 import { RegisterBankComponent } from './registerBank/registerBank.component';
 import { LoginComponent } from './login';
-import {JwtInterceptor} from "./_helpers";
-import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {JwtInterceptor} from './_helpers';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import {InvoiceDetailsComponent} from './invoice-details/invoice-details.component';
 
@@ -29,6 +30,7 @@ import {Globals} from './globals';
     HomeComponent,
     FooterComponent,
     ContactComponent,
+    AccountsComponent,
     RegisterComponent,
     RegisterBankComponent,
     LoginComponent

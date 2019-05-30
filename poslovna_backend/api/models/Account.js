@@ -49,6 +49,7 @@ module.exports = {
   },
   beforeCreate: async (attrs, next)=> {
     let xmlCreate = await sails.helpers.xmlGenerator(attrs);
+    console.log(xmlCreate);
     await TransferOrderFiles.create(xmlCreate).fetch();
     sails.log.debug('Acount meta info has been created!');
     next();
