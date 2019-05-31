@@ -75,7 +75,7 @@ password attempt.`,
 
   fn: async function (inputs, exits) {
     sails.log.info('Starting with login for web users');
-    let userRecord = await Bank.findOne({
+    let userRecord = await CentralBank.findOne({
       email: inputs.email.toLowerCase(),
     });
 

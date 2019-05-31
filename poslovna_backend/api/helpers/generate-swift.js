@@ -36,6 +36,9 @@ module.exports = {
 
     let bankFirstChars = inputs.bankName.substring(0, 3);
     let bankLastChar =  inputs.bankName.substring(inputs.bankName.length - 1) ;
+    let randomUniqueId = sails.helpers.strings.random();
+    console.log(randomUniqueId);
+
     let cityCode = '',  countryCode = '';
     let town = await City.find({name: inputs.city});
     if(town.length > 0){

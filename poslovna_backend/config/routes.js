@@ -40,8 +40,8 @@ module.exports.routes = {
   'POST /invoice/create': {action: 'invoice/create-invoice'},
 
 
-  'POST /payment-order/create': {action: 'paymentOrder/create'},
-  'GET /get-all-transfer-orders': {action: 'paymentOrder/getall-transfer-order-file'},
+  'POST /payment-order/create': {action: 'paymentOrder/create'},  //create payment order
+  'GET /get-all-transfer-orders': {action: 'paymentOrder/getall-transfer-order-file'},  //fetch all xml files for bank
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
   //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗

@@ -15,6 +15,9 @@
           <a *ngIf="globals.isLoggedIn" class="nav-link" routerLink="/accounts">Accounts</a>
         </li>
         <li class="nav-item">
+          <a *ngIf="globals.isLoggedIn" class="nav-link" routerLink="/payment-order">Payment Orders</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" routerLink="/registerBank" *ngIf="globals.isLoggedIn">Register Bank</a>
         </li>
       </ul>

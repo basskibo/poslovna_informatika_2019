@@ -27,6 +27,7 @@ module.exports = {
     pib: {
       type: 'string',
       columnName: 'PIB',
+      // unique:true,
       minLength: 4,
       maxLength: 32,
     },

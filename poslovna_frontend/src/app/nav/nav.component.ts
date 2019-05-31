@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject, Observable} from 'rxjs';
 import {User} from "../_models";
 import {first} from "rxjs/operators";
 import {AuthenticationService} from "../_services";
-import {Globals} from "../globals";
-import {Router} from "@angular/router"
+import {Globals} from '../globals';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-nav',

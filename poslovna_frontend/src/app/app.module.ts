@@ -12,6 +12,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ContactComponent } from './contact/contact.component';
 import {AccountsComponent} from './accounts/accounts.component';
 import { RegisterComponent } from './register/register.component';
+import {PaymentOrderComponent} from './payment-order/payment-order.component';
 import { RegisterBankComponent } from './registerBank/registerBank.component';
 import { LoginComponent } from './login';
 import {JwtInterceptor} from './_helpers';
@@ -32,6 +33,7 @@ import {Globals} from './globals';
     ContactComponent,
     AccountsComponent,
     RegisterComponent,
+    PaymentOrderComponent,
     RegisterBankComponent,
     LoginComponent
   ],

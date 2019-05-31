@@ -42,6 +42,6 @@ export class AuthenticationService {
     localStorage.removeItem('token');
     localStorage.removeItem('sessionId');
     this.currentUserSubject.next(null);
-    
+
   }
 }
