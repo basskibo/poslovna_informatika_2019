@@ -8,17 +8,20 @@ import {RegisterComponent} from './register/register.component';
 import {RegisterBankComponent} from './registerBank/registerBank.component';
 import {PaymentOrderComponent} from './payment-order/payment-order.component';
 import {LoginComponent} from './login/login.component';
-import {InvoiceDetailsComponent} from './invoice-details/invoice-details.component';
+import {CbLoginComponent} from './login_central_bank/login_cb.component';
+// import {InvoiceDetailsComponent} from './invoice-details/invoice-details.component';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent},
+  {path: '', component: HomeComponent},
+  {path: 'home', component: HomeComponent},
   { path: 'about', component: AboutComponent},
   { path: 'contact', component: ContactComponent},
   {path: 'accounts', component: AccountsComponent},
   { path : 'register' , component: RegisterComponent},
   {path: 'payment-order', component: PaymentOrderComponent},
   { path : 'login' , component: LoginComponent},
+  {path: 'cb_login', component: CbLoginComponent},
   { path : 'registerBank' , component: RegisterBankComponent}
 ];
 

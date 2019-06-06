@@ -1,16 +1,13 @@
-<header>
+<header *ngIf="globals.isLoggedIn">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <span class="bcgwhite"><img src="assets/img/logo_transparent.png" /></span>
-    <a class="navbar-brand" routerLink="/">Central Bank</a>
+    <a class="navbar-brand">Central Bank</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/" *ngIf="globals.isLoggedIn">Home</a>
-        </li>
         <li class="nav-item">
           <a *ngIf="globals.isLoggedIn" class="nav-link" routerLink="/accounts">Accounts</a>
         </li>

@@ -40,7 +40,7 @@ actually logged in.  (If they weren't, then this action is just a no-op.)`,
 
     delete this.req.me;
     if (!this.req.wantsJSON) {
-      throw {redirect: '/login'};
+      throw {redirect: '/home'};
     } else {
       return exits.success();
     }

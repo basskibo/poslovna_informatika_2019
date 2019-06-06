@@ -29,6 +29,7 @@ module.exports.routes = {
 
 
   'POST /auth/login': {action: 'auth/login'},
+  'POST /auth/cb-login': {action: 'auth/cb-login'},
   'POST /auth/logout': {action: 'auth/logout'},
 
   'POST /auth/cb-register': {action: 'central_bank/register'},

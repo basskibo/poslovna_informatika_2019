@@ -44,7 +44,7 @@ export class NavComponent implements OnInit {
     this.globals.isLoggedIn = false;
     localStorage.removeItem('currentUser');
     localStorage.removeItem('session');
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/home');
   }
 
 }

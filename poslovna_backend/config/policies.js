@@ -20,6 +20,7 @@ module.exports.policies = {
   // '*': true,
   '*': 'is-logged-in',
   'auth/login': true,
+  'auth/cb-login': true,
   'bank/register': true,
   'central_bank/register': true,
   'auth/register-bank-user': true,

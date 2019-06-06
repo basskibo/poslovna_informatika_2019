@@ -1,5 +1,3 @@
-
-
 let makeid = () => {
   let text = "", possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
@@ -10,9 +8,9 @@ let makeid = () => {
 };
 
 
-let generateSessionId = (userId) =>{
+let generateSessionId = (userId) => {
   let xSession;
-  xSession =  "w-" + userId + '-'+ makeid() + '-' + sails.helpers.strings.random();
+  xSession = "w-" + userId + '-' + makeid() + '-' + sails.helpers.strings.random();
   return xSession;
 };
 
@@ -76,9 +74,9 @@ password attempt.`,
   fn: async function (inputs, exits) {
     sails.log.info('Starting with login ');
     sails.log.info('============================');
-    sails.log.info('BANK');
+    sails.log.info('CENTRAL BANK');
     sails.log.info('============================');
-    let userRecord = await Bank.findOne({
+    let userRecord = await CentralBank.findOne({
       email: inputs.email.toLowerCase(),
     });
 
@@ -109,17 +107,17 @@ password attempt.`,
     this.req.session.userId = userRecord.id;
     let userSession = generateSessionId(userRecord.id);
     this.req.session.cookie.maxAge = sails.config.custom.rememberMeCookieMaxAge;
-    this.req.session.sessionId = userSession ;
+    this.req.session.sessionId = userSession;
 
-    let userWithSession =  {session : userSession, user : userRecord};
-    redis.set(userSession , JSON.stringify(userWithSession));
-    redis.expire(userSession,60*60*24);
+    let userWithSession = {session: userSession, user: userRecord};
+    redis.set(userSession, JSON.stringify(userWithSession));
+    redis.expire(userSession, 60 * 60 * 24);
     sails.log.debug("User logged in with session and created in redis: " + JSON.stringify(this.req.session.sessionId));
     let jwt = await sails.helpers.jwtTokenIssue.with({
-      userId: userRecord.id, session : userSession
+      userId: userRecord.id, session: userSession
     });
     return exits.success({
-      user:userRecord,
+      user: userRecord,
       session: userSession,
       token: jwt
     });

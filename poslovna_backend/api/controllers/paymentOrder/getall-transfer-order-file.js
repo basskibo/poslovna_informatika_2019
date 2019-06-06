@@ -9,7 +9,7 @@ module.exports = {
 
 
   inputs: {
-    bankId: {
+    bank_id: {
       type: 'string',
       description: 'bank identifier',
       required: true
@@ -35,10 +35,10 @@ module.exports = {
 
   fn: async function (inputs, exits) {
     sails.log.info('Starting with fetching transfer order file links');
-    // await TransferOrderFiles.create(xmlCreate).fetch();
 
-    let orders = await TransferOrderFiles.find(
-      {bank_id: inputs.bankId});
+    let _id = {bank_id: inputs.bank_id};
+    console.log(_id);
+    let orders = await TransferOrderFiles.find(_id);
 
     let filesArray = [];
     _.forEach(orders, order => {

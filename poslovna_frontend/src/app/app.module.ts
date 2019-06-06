@@ -15,10 +15,14 @@ import { RegisterComponent } from './register/register.component';
 import {PaymentOrderComponent} from './payment-order/payment-order.component';
 import { RegisterBankComponent } from './registerBank/registerBank.component';
 import { LoginComponent } from './login';
+import {CbLoginComponent} from "./login_central_bank";
 import {JwtInterceptor} from './_helpers';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import {InvoiceDetailsComponent} from './invoice-details/invoice-details.component';
+
+
+// import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {Globals} from './globals';
 
@@ -35,7 +39,8 @@ import {Globals} from './globals';
     RegisterComponent,
     PaymentOrderComponent,
     RegisterBankComponent,
-    LoginComponent
+    LoginComponent,
+    CbLoginComponent
   ],
   imports: [
     BrowserModule,

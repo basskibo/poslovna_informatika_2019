@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
+import {Component, OnInit} from '@angular/core';
+import {DataService} from '../data.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticationService} from '../_services';
@@ -8,11 +8,11 @@ import {Globals} from '../globals';
 
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-cb-login',
+  templateUrl: './login_cb.component.html',
+  styleUrls: ['./login_cb.component.css']
 })
-export class LoginComponent implements OnInit {
+export class CbLoginComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
   submitted = false;
@@ -24,7 +24,8 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private data: DataService) { }
+    private data: DataService) {
+  }
 
 
   ngOnInit() {
@@ -35,7 +36,9 @@ export class LoginComponent implements OnInit {
 
   }
 
-  get f() { return this.loginForm.controls; }
+  get f() {
+    return this.loginForm.controls;
+  }
 
   onSubmit() {
     this.submitted = true;
@@ -47,7 +50,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.authenticationService.login(this.f.email.value, this.f.password.value)
+    this.authenticationService.loginCb(this.f.email.value, this.f.password.value)
       .pipe(first())
       .subscribe(
         data => {

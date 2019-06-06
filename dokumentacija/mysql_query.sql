@@ -12,7 +12,7 @@ SELECT * FROM transfer_naloga_info;
 SELECT * FROM kodovi_banke;
 SELECT * FROM racun;
 
-UPDATE transfer_naloga_info SET bank_id = 1 where bank_id = 4;
+-- UPDATE transfer_naloga_info SET bank_id = 1 where bank_id = 4;
 
 
 -- helpers

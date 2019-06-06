@@ -36,6 +36,24 @@ export class AuthenticationService {
       }));
   }
 
+
+  loginCb(email: string, password: string) {
+    return this.http.post<any>(`http://localhost:1337/auth/cb-login`, {email, password})
+      .pipe(map(user => {
+        // login successful if there's a jwt token in the response
+        if (user && user.token) {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('currentUser', JSON.stringify(user.user));
+          localStorage.setItem('token', JSON.stringify(user.token));
+          localStorage.setItem('sessionId', JSON.stringify(user.session));
+          this.currentUserSubject.next(user);
+        }
+
+        return user;
+      }));
+  }
+
+
   logout(_id: string) {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
