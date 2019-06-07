@@ -9,15 +9,27 @@ import { User } from '../_models';
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
+  private currentUserSessionSubject: BehaviorSubject<User>;
+  private currentUserTokenSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUserSessionSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('sessionId')));
+    this.currentUserTokenSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('token')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
   public get currentUserValue(): User {
     return this.currentUserSubject.value;
+  }
+
+  public get currentUserTokenValue(): User {
+    return this.currentUserTokenSubject.value;
+  }
+
+  public get currentUserSessionValue(): User {
+    return this.currentUserSessionSubject.value;
   }
 
   login(email: string, password: string) {

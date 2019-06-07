@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {DataService} from '../data.service';
-import {FormGroup, FormBuilder, Validators} from '@angular/forms';
-import {Globals} from '../globals';
-import {UserService} from '../_services';
-import {first} from 'rxjs/operators';
-import {Router} from '@angular/router';
+import {MatTableDataSource} from '@angular/material';
+
+// import { Object } from '../_models/payment_orders.model';
+
+import {HttpClient} from '@angular/common/http';
+
 
 @Component({
   selector: 'app-payment-order',
@@ -13,43 +13,24 @@ import {Router} from '@angular/router';
 })
 
 export class PaymentOrderComponent implements OnInit {
-  registerForm: FormGroup;
-  loading = false;
-  submitted = false;
-  isCentral = true;
-  msg = '';
+  // paymentOrders: Object = [] ;
+  // paymentOrderTableDataSource = new MatTableDataSource(this.paymentOrders);
+  displayedColumns: string[] = [
+    'name',
+    'path'
+  ];
 
-  constructor(
-    private data: DataService, private globals: Globals,
-    private formBuilder: FormBuilder, private userService: UserService,
-    private router: Router
-  ) {
+  constructor(private httpClient: HttpClient) {
   }
 
-  get f() {
-    return this.registerForm.controls;
-  }
+
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.minLength(6), Validators.required]],
-      name: [''],
-      address: [''],
-      city: [''],
-      country: [''],
-      pib: ['', [Validators.pattern('[0-9]{9}'), Validators.required]],
-      telephone: [''],
-      type: ['', [Validators.required]],
-      website: ['']
+    this.httpClient.get('http://localhost:1337/get-all-transfer-orders?bank_id=1').subscribe((res) => {
+      console.log(res);
+      // this.paymentOrders = res;
+      // this.paymentOrderTableDataSource.data = this.paymentOrders;
     });
-  }
-
-  onSubmit() {
-    this.submitted = true;
-    this.loading = true;
-
-    return;
   }
 
 }

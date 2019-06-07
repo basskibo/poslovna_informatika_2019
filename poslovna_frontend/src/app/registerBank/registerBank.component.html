@@ -109,21 +109,6 @@
       </div>     
     </div>
 
-    <div class="form-group half-width">
-      <label for="isCentral">Central?</label>
-      <select class="form-control" formControlName="isCentral">
-        <option [ngValue]="true">Yes</option>
-        <option [ngValue]="false">No</option>
-      </select>
-
-      <div *ngIf="f.isCentral.invalid && (f.isCentral.dirty || f.isCentral.touched)"
-      class="alert alert-danger" role="alert" style="margin-top: 10px;">
-      <div *ngIf="f.isCentral.errors.required">
-         You must select is you bank central or not.
-      </div>
-      </div>
-    </div>
-
     <div class="form-group">
       <p style="color:#33cc33">{{msg}}</p>
       <button [disabled]="loading" class="btn btn-primary">Register</button>

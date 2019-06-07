@@ -75,6 +75,10 @@ module.exports = {
     users: {
       collection: 'user',
       via: 'bank'
+    },
+    typeOfBank: {
+      type: 'string',
+      defaultsTo: 'Bank'
     }
 
 

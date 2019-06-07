@@ -72,6 +72,10 @@ module.exports = {
       type: 'string',
       required: false
     },
+    typeOfBank: {
+      type: 'string',
+      defaultsTo: 'Central Bank'
+    }
     // users: {
     //   collection: 'user',
     //   via: 'bank'

@@ -15,8 +15,15 @@ export class UserService {
     return this.http.get(`/users/` + id);
   }
 
-  register(email: string, password: string, name: string, address: string, city: string, country: string, pib: string, type: string, telephone: string, isCentral: boolean, web: string) {
-    return this.http.post<any>(`http://localhost:1337/auth/register`, { email , password , name , address , city, country , pib , type , telephone , isCentral , web })
+  register(email: string, password: string,
+           name: string, address: string,
+           city: string, country: string,
+           pib: string, type: string,
+           telephone: string,
+           isCentral: boolean,
+           web: string) {
+    return this.http.post<any>(`http://localhost:1337/auth/cb-register`,
+      {email, password, name, address, city, country, pib, telephone, web});
   }
 
   update(user: User) {

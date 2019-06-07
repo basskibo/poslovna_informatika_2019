@@ -15,8 +15,8 @@ import { RegisterComponent } from './register/register.component';
 import {PaymentOrderComponent} from './payment-order/payment-order.component';
 import { RegisterBankComponent } from './registerBank/registerBank.component';
 import { LoginComponent } from './login';
-import {CbLoginComponent} from "./login_central_bank";
-import {JwtInterceptor} from './_helpers';
+import {CbLoginComponent} from './login_central_bank';
+import {JwtInterceptor, ErrorInterceptor} from './_helpers';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import {InvoiceDetailsComponent} from './invoice-details/invoice-details.component';
@@ -51,7 +51,8 @@ import {Globals} from './globals';
     HttpClientModule
   ],
   providers: [Globals,
-    {provide: HTTP_INTERCEPTORS , useClass: JwtInterceptor, multi: true }
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
 })

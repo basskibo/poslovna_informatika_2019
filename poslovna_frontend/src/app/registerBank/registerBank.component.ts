@@ -66,8 +66,7 @@ export class RegisterBankComponent implements OnInit {
 
     console.log(this.f.bankPIB.value, this.f.bankName.value, this.f.bankAddress.value,
       this.f.bankCountry.value, this.f.bankCity.value, this.f.bankEmail.value,
-      this.f.bankWeb.value, this.f.bankTelephone.value, this.f.bankFax.value,
-      this.f.isCentral.value);
+      this.f.bankWeb.value, this.f.bankTelephone.value, this.f.bankFax.value);
     this.bankService.register(
       this.f.bankPIB.value,
       this.f.bankName.value,
@@ -78,7 +77,6 @@ export class RegisterBankComponent implements OnInit {
       this.f.bankWeb.value,
       this.f.bankTelephone.value,
       this.f.bankFax.value,
-      this.f.isCentral.value
       ).pipe(first())
       .subscribe(
         data => {

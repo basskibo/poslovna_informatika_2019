@@ -17,8 +17,8 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-  // '*': true,
-  '*': 'is-logged-in',
+  '*': true,
+  // '*': 'is-logged-in',
   'auth/login': true,
   'auth/cb-login': true,
   'bank/register': true,

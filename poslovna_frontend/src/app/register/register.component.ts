@@ -35,7 +35,6 @@ export class RegisterComponent implements OnInit {
         country: [''],
         pib: ['', [Validators.pattern('[0-9]{9}'), Validators.required]],
         telephone: [''],
-        type: ['', [Validators.required]],
         website: ['']
       });
     }
@@ -50,7 +49,8 @@ export class RegisterComponent implements OnInit {
         return;
       }
       console.log(this.isCentral +  this.f.email.value + this.f.password.value + this.f.name.value + this.f.address.value,
-        this.f.pib.value, this.f.type.value, this.f.telephone.value, this.f.website.value);
+        this.f.pib.value, this.f.telephone.value, this.f.website.value);
+      // @ts-ignore
       this.userService.register(
         this.f.email.value,
         this.f.password.value,
@@ -59,15 +59,16 @@ export class RegisterComponent implements OnInit {
         this.f.city.value,
         this.f.country.value,
         this.f.pib.value,
-        this.f.type.value,
         this.f.telephone.value,
-        this.isCentral,
         this.f.website.value).pipe(first())
         .subscribe(
           data => {
             console.log('register successful!!');
-            this.msg = 'Successfully added new ' + this.f.type.value;
-            setTimeout(() => { this.router.navigate(['/login']); }, 3000);
+            this.msg = 'Successfully added new central bank';
+            setTimeout(() => {
+              debugger;
+              this.router.navigate(['/cb_login']);
+            }, 500);
 
           },
           error => {

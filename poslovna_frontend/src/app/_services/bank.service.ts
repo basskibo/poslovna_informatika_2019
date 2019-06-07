@@ -15,8 +15,9 @@ export class BankService {
     return this.http.get(`/banks/` + id);
   }
 
-  register(pib: number, name: string, address: string, country: string, city: string, email: string, web:string, telephone: string, fax: string, isCentral: boolean) {
-    return this.http.post<any>(`http://localhost:1337/auth/register`, {
+  register(pib: number, name: string, address: string, country: string,
+           city: string, email: string, web: string, telephone: string, fax: string) {
+    return this.http.post<any>(`http://localhost:1337/auth/b-register`, {
       pib,
       name,
       address,
@@ -25,9 +26,8 @@ export class BankService {
       email,
       web,
       telephone,
-      fax,
-      isCentral
-    })
+      fax
+    });
   }
 
   update(bank: Bank) {

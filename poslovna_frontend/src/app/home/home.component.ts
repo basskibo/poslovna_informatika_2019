@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
-import { HttpClient } from '@angular/common/http';
+import {Globals} from '../globals';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,11 +10,18 @@ import { HttpClient } from '@angular/common/http';
 export class HomeComponent implements OnInit {
 
 
-  constructor(private data: DataService,private http: HttpClient) { }
-
-  ngOnInit() {
-
+  constructor(
+    private globals: Globals,
+    private router: Router) {
   }
 
-  
+  ngOnInit() {
+    const userInSession = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(userInSession);
+    if (userInSession) {
+      this.router.navigate(['accounts']);
+    }
+  }
+
+
 }

@@ -3,7 +3,10 @@
     <span class="bcgwhite"><img src="assets/img/central_bank.png" style="width: 350px;"/></span>
     <h2>Jane Flex</h2>
     <p>Some text.</p>
-    <button class="btn btn-outline-primary " routerLink="/cb_login">Log In as Central bank</button>
+    <button class="btn btn-outline-primary " routerLink="/cb_login" style="margin-right: 10px;">Log In as Central bank
+    </button>
+    <button *ngIf="!globals.isLoggedIn" class="btn btn-outline-secondary " routerLink="/register">Register</button>
+
   </div>
 </div>
 
