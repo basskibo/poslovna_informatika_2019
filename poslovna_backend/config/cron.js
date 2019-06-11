@@ -1,11 +1,19 @@
 // ['seconds', 'minutes', 'hours', 'dayOfMonth', 'month', 'dayOfWeek']
 
+
 module.exports.cron = {
   dailyCrossSection: {
-    schedule: '0 */5 * * * *',
-    onTick: function() {
-      sails.log.info('I will trigger in every 5 minute');
+    schedule: '*/30 * * * * *',
+    onTick: async function () {
+      sails.log.info('===============================================');
+      sails.log.info('Clearing is starting....');
+      let swift = await sails.helpers.runCliring();
+      // console.log("CRON JOB FINISHED!" + swift);
+      sails.log.info('===============================================');
+
+      return swift;
     },
+    start: true, // Start task immediately
     onComplete: function() {
       console.log('I am triggering when job is complete');
     },

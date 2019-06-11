@@ -6,7 +6,7 @@
  */
 
 module.exports = {
-  tableName:'transfer_naloga_info',
+  tableName: 'naloga_za_prenos_info',
   primaryKey: 'id',
 
   attributes: {

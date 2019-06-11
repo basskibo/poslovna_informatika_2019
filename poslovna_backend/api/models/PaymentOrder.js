@@ -82,6 +82,11 @@ module.exports = {
       type:'boolean',
       columnName:'hitno',
       defaultsTo:false
+    },
+    finished: {
+      type: 'boolean',
+      columnName: 'zavrsen',
+      defaultsTo: false
     }
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗

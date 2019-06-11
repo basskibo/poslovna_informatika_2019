@@ -82,7 +82,7 @@ password attempt.`,
       email: inputs.email.toLowerCase(),
     });
 
-    sails.log.info("user rec found : " + JSON.stringify(userRecord));
+    // sails.log.info("user rec found : " + JSON.stringify(userRecord));
     if (!userRecord) {
       sails.log.error('It is bad combo, we could not found user with that id');
       throw 'badCombo';
