@@ -1,9 +1,8 @@
-export class Account {
-    id: number;
-    // username: string;
-    password: string;
-    firstName: string;
-    lastName: string;
-    token: string;
-  }
-  
+export interface Account {
+  id: Number;
+  account_number: String;
+  valid: Boolean;
+  user_id: String;
+  balance: BigInteger;
+  bankAccount: Boolean;
+}

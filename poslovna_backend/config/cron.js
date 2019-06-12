@@ -3,7 +3,7 @@
 
 module.exports.cron = {
   dailyCrossSection: {
-    schedule: '*/30 * * * * *',
+    schedule: '* */5 * * * *',
     onTick: async function () {
       sails.log.info('===============================================');
       sails.log.info('Clearing is starting....');

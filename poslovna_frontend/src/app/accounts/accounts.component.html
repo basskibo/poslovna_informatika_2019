@@ -1,17 +1,17 @@
-<!--<div class="container align-items-center" style="margin: auto; width: 100%; margin-top: 120px;">-->
-  <h2>Upload account file: </h2>
 
-  <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
-    <div class="form-group">
-      <p>Choose from your files acccount file and upload in order to use it later... Lorem ipsum sader saffatu male li
-        ruupoti</p>
-      <!--        <label for="file">Choose File</label>-->
-      <input (change)="handleFileInput($event.target.files)"
-             id="file"
-             type="file">
-      <button [disabled]="loading" class="btn btn-primary">Upload</button>
+<div class="split left">
+  <div class="centered">
+    <h2>List of all accounts</h2>
+  </div>
+</div>
 
-    </div>
+<div class="split right">
+  <div class="centered">
+    <h2> Create new user account</h2>
+    <button class="btn btn-primary" routerLink="/registerBank">New Account</button>
 
-  </form>
-<!--</div>-->
+
+  </div>
+</div>
+
+

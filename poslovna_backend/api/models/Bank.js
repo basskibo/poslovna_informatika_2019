@@ -76,6 +76,10 @@ module.exports = {
       collection: 'user',
       via: 'bank'
     },
+    accounts:{
+      collection: 'account',
+      via: 'affiliation'
+    },
     typeOfBank: {
       type: 'string',
       defaultsTo: 'Bank'
@@ -107,7 +111,8 @@ module.exports = {
     sails.log.info('Lets create account for bank!');
     let accountCreated = await Account.create({
       user_id: attrs.id,
-      account_number: await sails.helpers.generateAccountNumber(attrs.name)
+      account_number: await sails.helpers.generateAccountNumber(attrs.name),
+      affiliation: attrs.id
     });
     let country_currency = await sails.helpers.getCurrencyByCountry(attrs.country);
     await Currency.findOrCreate({currency_code: country_currency.code}, {

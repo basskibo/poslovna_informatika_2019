@@ -6,17 +6,18 @@
  */
 
 module.exports = {
-  primaryKey: 'id',
   tableName:'racun',
-
+  primaryKey: 'id',
+  // dontUseObjectIds: true,
   attributes: {
+    // id: { type: 'number', columnName: '_id' }, // <-- still need to set `columnName`!
 
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
     account_number: {
       type:'string',
-      columnName:'broj racuna',
+      columnName:'broj_racuna',
       maxLength:30,
     },
 
@@ -25,16 +26,23 @@ module.exports = {
       columnName: 'vazeci',
       defaultsTo : true
     },
+    bank_account :{
+      type:'boolean',
+      defaultsTo: true
+    },
     user_id: {
-      model: 'bank',
       columnName: 'bank_id',
+      type: 'string',
       required: false
+    },
+    affiliation: {
+      model:'bank'
     },
     balance: {
       type:'number',
       columnType: 'decimal (15,2)',
       defaultsTo: 0,
-      columnName:'stanje racuna',
+      columnName:'stanje_racuna',
     }
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
