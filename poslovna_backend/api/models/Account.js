@@ -36,6 +36,9 @@ module.exports = {
       defaultsTo: 0,
       columnName:'stanje racuna',
     },
+    affiliation: {
+      model: 'bank'
+    },
     reserved: {
       type: 'number',
       columnType: 'decimal (15,2)',
