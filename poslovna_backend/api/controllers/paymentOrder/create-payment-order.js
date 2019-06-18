@@ -90,20 +90,21 @@ module.exports = {
     missingParams: {
       description:'The provided informations are not full, please provide all info',
       responseType:'notFound'
+    },
+    notEnoughFunds: {
+      description: 'There is not enough funds on account to make this payment order',
+      responseType: 'insufficientFunds'
     }
   },
 
 
   fn: async function (inputs, exits) {
     sails.log.info('Starting with create payment order');
-
-    let newOrder = await PaymentOrder.create(
-      {
+    try {
+      let orderObj = {
         debtor: inputs.debtor,
         payment_puropose : inputs.payment_puropose,
         recipient : inputs.recipient,
-        // order_date: now,
-        // currency_date : JSON.stringify(new Date()),
         debtor_account : inputs.debtor_account,
         debtor_model : inputs.debtor_model,
         debtor_reference_number : inputs.debtor_reference_number,
@@ -113,12 +114,36 @@ module.exports = {
         amount: inputs.amount,
         currency_code: inputs.currency_code,
         urgent : inputs.urgent
-      })
-      .intercept({name: 'UsageError'}, 'missingParams')
-      .fetch();
+      };
+      let newOrder = await PaymentOrder.create(orderObj)
+        .intercept({name: 'UsageError'}, 'missingParams')
+        .fetch();
+      let debtorAcc = await Account.findOne({account_number: inputs.debtor_account});
+      let debitAcc = await Account.findOne({account_number: inputs.debit_account});
+      if (debitAcc && debtorAcc) {
+        sails.log.debug('Accounts found, proceeding...');
+        console.log('is enough: ' + (debtorAcc.balance - debtorAcc.reserved) < 0);
+        let futureDebtorbalance = debtorAcc.balance - debtorAcc.reserved;
+        //da li je dozvoljen minus????
+        if (futureDebtorbalance < 0) {
+          return exits.notEnoughFunds();
+        }
+        await Account.updateOne({id: debitAcc.id}).set({reserved: debitAcc.reserved + inputs.amount});
+        await Account.updateOne({id: debtorAcc.id}).set({reserved: ((-inputs.amount) + (debtorAcc.reserved))});
+      } else {
+        sails.log.error('Account for debtor or debit was not found !');
+        return exits.missingParams(false);
+      }
 
-    sails.log.info("Creating payment order finished");
-    return exits.success(newOrder);
+      sails.log.debug("Debtor account : " + JSON.stringify(debtorAcc.account_number));
+      sails.log.debug("Debit account : " + JSON.stringify(debitAcc.account_number));
+      sails.log.info("Creating payment order finished");
+      return exits.success(newOrder);
+    } catch (ex) {
+      sails.log.error("There was some error, catch caught error: " + ex);
+      return exits.missingParams(false);
+    }
+
 
   }
 

@@ -41,7 +41,7 @@ module.exports = {
     debtor_account: {
       type: 'string',
       columnName:'racun_duznika',
-      columnType: 'varchar (18)'
+      columnType: 'varchar (30)'
     },
     debtor_model: {
       type:'number',
@@ -56,7 +56,7 @@ module.exports = {
     debit_account: {
       type: 'string',
       columnName:'racun_zaduzenja',
-      columnType: 'varchar (18)'
+      columnType: 'varchar (30)'
     },
     debit_model: {
       type:'number',
@@ -98,6 +98,13 @@ module.exports = {
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
   },
+  afterCreate: async (attrs, next) => {
+    let xmlCreate = await sails.helpers.xmlGenerator(attrs);
+    // console.log(xmlCreate);
+    await PaymentOrderFiles.create(xmlCreate).fetch();
+    sails.log.debug('Payment order xml has been created!');
+    next();
 
+  }
 };
 

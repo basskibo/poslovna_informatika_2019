@@ -1,17 +1,16 @@
 // ['seconds', 'minutes', 'hours', 'dayOfMonth', 'month', 'dayOfWeek']
 
+let moment = require('moment');
 
 module.exports.cron = {
-  dailyCrossSection: {
-    schedule: '* */5 * * * *',
+  dailyClearingSection: {
+    schedule: '*/20 * * * * *',
     onTick: async function () {
       sails.log.info('===============================================');
-      sails.log.info('Clearing is starting....');
-      let swift = await sails.helpers.runCliring();
-      // console.log("CRON JOB FINISHED!" + swift);
+      sails.log.info('Clearing is starting at <<< ' + moment().format('DD-MM-YYYY hh:mm:ss') + ' >>>');
+      let exec = await sails.helpers.runCliring();
       sails.log.info('===============================================');
-
-      return swift;
+      return exec;
     },
     start: true, // Start task immediately
     onComplete: function() {
