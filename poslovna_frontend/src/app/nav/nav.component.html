@@ -9,13 +9,25 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/" *ngIf="globals.isLoggedIn">Home</a>
+          <a class="nav-link" 
+          routerLink="/"
+          routerLinkActive="is-active" 
+          [routerLinkActiveOptions]="{exact:true}"
+          *ngIf="globals.isLoggedIn">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/" *ngIf="globals.isLoggedIn">Accounts</a>
+          <a class="nav-link" 
+          routerLink="/accounts"
+          routerLinkActive="is-active" 
+          [routerLinkActiveOptions]="{exact:true}"
+          *ngIf="globals.isLoggedIn">Accounts</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/registerBank" *ngIf="globals.isLoggedIn">Register Bank</a>
+          <a class="nav-link" 
+          routerLink="/registerBank" 
+          routerLinkActive="is-active" 
+          [routerLinkActiveOptions]="{exact:true}"
+          *ngIf="globals.isLoggedIn">Register Bank</a>
         </li>
       </ul>
       <form class="form-inline my-1 my-lg-0">

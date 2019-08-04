@@ -1,3 +1,8 @@
 *{
     background-color: #f9f9f9;
 }
+
+.is-active{
+  background-color:gray;
+  border-radius: 3.5px;
+}  
