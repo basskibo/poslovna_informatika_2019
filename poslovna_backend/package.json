@@ -6,7 +6,7 @@
   "keywords": [],
   "dependencies": {
     "@sailshq/lodash": "^3.10.3",
-    "async": "2.0.1",
+    "async": "2.6.4",
     "ioredis": "^4.5.1",
     "jsonwebtoken": "^8.4.0",
     "sails": "^1.0.2",
