@@ -11,7 +11,7 @@
     "jsonwebtoken": "^8.4.0",
     "sails": "^1.0.2",
     "sails-hook-cron": "^3.0.0",
-    "sails-hook-organics": "^0.15.2",
+    "sails-hook-organics": "^2.2.1",
     "sails-hook-orm": "^2.0.0-16",
     "sails-hook-sockets": "^1.4.0",
     "sails-hook-winston": "^1.1.0",
