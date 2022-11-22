@@ -13,7 +13,7 @@
     "sails-hook-cron": "^3.0.0",
     "sails-hook-organics": "^0.15.2",
     "sails-hook-orm": "^2.0.0-16",
-    "sails-hook-sockets": "^1.4.0",
+    "sails-hook-sockets": "^2.0.3",
     "sails-hook-winston": "^1.1.0",
     "sails-mysql": "^1.0.1",
     "winston-daily-rotate-file": "^3.6.0",
